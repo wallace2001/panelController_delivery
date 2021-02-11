@@ -11,6 +11,7 @@ Login.Bg = styled.div`
 
     background-image: url(${({ backgroundImg }) => backgroundImg ? backgroundImg : ''});
     background-size: cover;
+    background-position: center;
 `;
 
 Login.Content = styled.div`
@@ -47,10 +48,11 @@ Login.Input = styled.div`
     margin-top: 40px;
 
     label{
+        width: 50px;
         margin-bottom: 10px;    
         color: black;
         position: relative;
-        left: 20%;
+        left: 90px;
     }
 
     input{
