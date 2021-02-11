@@ -1,0 +1,10 @@
+{
+    "bgMenu": "https://mir-s3-cdn-cf.behance.net/project_modules/fs/3f663368278613.5b5764ab237a4.jpg",
+    "theme":{
+        "colors":{
+            "primary": "black",
+            "secundary": "white",
+            "panelColor": "#0057FF"
+        }
+    }
+}
