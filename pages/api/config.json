@@ -5,7 +5,13 @@
             "primary": "black",
             "secundary": "white",
             "panelColor": "#0057FF",
-            "colorMenu": "white"
+            "colorMenu": "white",
+            "boxLogin": "white",
+            "loginColor": "black",
+            "loginWordColor": "black",
+            "loginLabelColor": "black",
+            "loginButtonWord": "white",
+            "loginButtonColor": "#0057FF"
         }
     }
 }

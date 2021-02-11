@@ -33,11 +33,11 @@ Login.Box = styled.div`
 
 
 
-    background-color: rgba(255,255,255);
+    background-color: ${({ theme }) => theme.colors.boxLogin};
 
     h2{
         text-align: center;
-        color: black;
+        color: ${({ theme }) => theme.colors.loginColor};
     }
 `;
 
@@ -50,7 +50,7 @@ Login.Input = styled.div`
     label{
         width: 50px;
         margin-bottom: 10px;    
-        color: black;
+        color: ${({ theme }) => theme.colors.loginLabelColor};
         position: relative;
         left: 90px;
     }
@@ -77,10 +77,10 @@ Login.Button = styled.div`
         width: 180px;
         height: 50px;
 
-        color: white;
+        color: ${({ theme }) => theme.colors.loginButtonWord};
         border: none;
         border-radius: 10px;
-        background-color: #0057FF;
+        background-color: ${({ theme }) => theme.colors.loginButtonColor};
         outline: none;
         cursor: pointer;
 
