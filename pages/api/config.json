@@ -4,7 +4,8 @@
         "colors":{
             "primary": "black",
             "secundary": "white",
-            "panelColor": "#0057FF"
+            "panelColor": "#0057FF",
+            "colorMenu": "white"
         }
     }
 }

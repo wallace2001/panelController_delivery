@@ -69,22 +69,27 @@ Panel.Control = styled.div`
         width: 80%;
         height: ${({ model }) => model ? '400px' : '80px'};
     }
+
+    label{
+        color: ${({ theme }) => theme.colors.primary};
+
+
+    }
     
 `;
 
-Panel.Label = styled.label`
-    cursor: pointer;
+Panel.Form = styled.form`
+    width: 100%;
+    height: 100%;
+
     input{
         display: none;
     }
 
-    background-color: ${({ active }) => active ? `${panel}` : 'white'};
-    color: ${({ active }) => active ? 'white' : `${word}`};
+`;
 
-    &:hover{
-        background-color: blue;
-        color: white;
-    }
+Panel.Div = styled.div`
+    background-color: ${({ data_selected }) => data_selected ? 'blue' : '#ccc'};
 `;
 
 Panel.Title = styled.div`
@@ -97,8 +102,8 @@ Panel.Title = styled.div`
 
     border-radius: ${({ info }) => info ? "0" : '10px 10px 0px 0px'};
 
-    background-color: ${({ active }) => active ? `${panel}` : 'white'};
-    color: ${({ active }) => active ? 'white' : `${word}`};
+    background-color: ${({ active, data_selected, theme }) => active ? `${theme.colors.panelColor}` : `${data_selected ? `${panel}` : ''}`};
+    color: ${({ active, data_selected, theme }) => active ? `${ theme.colors.secundary }` : `${data_selected ? `${ theme.colors.secundary }` : `${ theme.colors.primary }`}`};
 
     
 
@@ -107,7 +112,7 @@ Panel.Title = styled.div`
     /* background-color: ${({ theme }) => theme.colors.panelColor}; */
 
 
-    &:hover{
+    /* &:hover{
         background-color: blue;
         color: white;
 
@@ -118,12 +123,7 @@ Panel.Title = styled.div`
         div{
             background-color: white;
         }
-    }
-
-    &:active{
-        background-color: blue;
-        color: white;
-    }
+    } */
 
     icon{
         margin-top: 10px;
@@ -132,6 +132,7 @@ Panel.Title = styled.div`
 
     h4{
         margin-left: 20px;
+
     }
 
     div{
@@ -139,7 +140,7 @@ Panel.Title = styled.div`
         height: 32px;
 
         border-radius: 16px;
-        background-color: blue;
+        background-color: ${({ active }) => active ? 'white' : 'blue'};
 
         position: relative;
         top: 8px;
@@ -147,7 +148,7 @@ Panel.Title = styled.div`
 
         h3{
             text-align: center;
-            color: white;
+            color: ${({ active, theme }) => active ? `${theme.colors.primary}` : `${ theme.colors.secundary }`};
             font-size: 15px;
             position: relative;
             bottom: 8px;

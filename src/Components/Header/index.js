@@ -39,10 +39,11 @@ Header.Icon = styled.div`
         top: ${({ navbar }) => navbar ? '45%' : '35%'};
         left: ${({ navbar }) => navbar ? '290%' : '5%'};
 
+
         transition: 1s ease;
         transform: ${({ navbar }) => navbar ? 'rotate(225deg)' : ''};
 
-        background-color: white;
+        background-color: ${({ theme }) => theme.colors.colorMenu};
 
         @media screen and (max-width: 1000px){
             left: ${({ navbar }) => navbar ? '360%' : '15%'};
@@ -65,7 +66,7 @@ Header.Icon = styled.div`
         transition: 1s ease;
         transform: ${({ navbar }) => navbar ? 'rotate(310deg)' : ''};
 
-        background-color: white;
+        background-color: ${({ theme }) => theme.colors.colorMenu};
 
         @media screen and (max-width: 1000px){
             left: ${({ navbar }) => navbar ? '360%' : '15%'};

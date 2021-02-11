@@ -18,7 +18,8 @@ export const SidebarData = [
         icon: <FaHamburger />,
         iconU: <RiArrowUpSLine size={30} />,
         iconD: <RiArrowDownSLine size={30}/>,
-        component: <Hamburguer />
+        component: <Hamburguer />,
+        current: false,
     },
     
     {
@@ -28,7 +29,8 @@ export const SidebarData = [
         icon: <FaCandyCane />,
         iconU: <RiArrowUpSLine size={30} />,
         iconD: <RiArrowDownSLine size={30}/>,
-        component: <Dessert />
+        component: <Dessert />,
+        current: false,
     },
 
     {
@@ -38,7 +40,8 @@ export const SidebarData = [
         icon: <BiMoney />,
         iconU: <RiArrowUpSLine size={30} />,
         iconD: <RiArrowDownSLine size={30}/>,
-        component: <Promo />
+        component: <Promo />,
+        current: false,
     },
 
     {
@@ -49,7 +52,7 @@ export const SidebarData = [
         iconU: <RiArrowUpSLine size={30} />,
         iconD: <RiArrowDownSLine size={30}/>,
         component: <Evaluation />,
-        current: true
+        current: true,
     },
 
     {
@@ -59,7 +62,8 @@ export const SidebarData = [
         icon: <BiPhone />,
         iconU: <RiArrowUpSLine size={30} />,
         iconD: <RiArrowDownSLine size={30}/>,
-        component: <Contact />
+        component: <Contact />,
+        current: false,
     },
 
     {
@@ -69,7 +73,8 @@ export const SidebarData = [
         icon: <AiOutlineTeam />,
         iconU: <RiArrowUpSLine size={30} />,
         iconD: <RiArrowDownSLine size={30}/>,
-        component: <About />
+        component: <About />,
+        current: false,
     },
 
 ];
