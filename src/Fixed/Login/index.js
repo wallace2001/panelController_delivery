@@ -1,9 +1,11 @@
 import React from 'react'
 import { Login } from '../../Components/Login';
 import db from '../../../pages/api/config.json';
+import { useRouter } from 'next/router';
 
 export const LoginBox = () => {
 
+    const router = useRouter();
     const img = db.bgMenu;
     return (
         <Login>
@@ -21,7 +23,7 @@ export const LoginBox = () => {
                             <input type="password" />
                         </Login.Input>
 
-                        <Login.Button><button>Entrar</button></Login.Button>
+                        <Login.Button><button onClick={() => router.push('/panel')}>Entrar</button></Login.Button>
                         
                     </Login.Box>
                 </Login.Content>
