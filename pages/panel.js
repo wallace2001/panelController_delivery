@@ -16,11 +16,12 @@ const Div = styled.div`
 
 export default function Panel(){
     const [modal, setModal] = useState(false);
+
     return (
         <>
             <Navbar color={db.theme.colors.panelColor} />
             <Div><Modals modal={modal} setModal={setModal} /></Div>
-            <PanelConfig modal={modal} setModal={setModal}></PanelConfig>        
+            <PanelConfig modal={modal} setModal={setModal} ></PanelConfig>        
         </>
     )
 }

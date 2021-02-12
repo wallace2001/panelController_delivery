@@ -1,16 +1,61 @@
 import React from 'react'
-import styled from 'styled-components';
-
-const Div = styled.div`
-    h2{
-        color: black;
-    }
-`;
+import { Eval } from '../../Components/Evaluation';
+import { falseApiEvaluation } from '../../../pages/api/hello';
+import { tableApi } from '../../../pages/api/hello';
 
 export const Evaluation = () => {
+    const Api = falseApiEvaluation;
+    const tableA = tableApi;
     return (
-        <Div>
-            <h2>Avaliação</h2>
-        </Div>
+        <Eval>
+            <Eval.Content>
+                <Eval.Table>
+                    <tbody>
+                    <tr>
+                        {tableA.map((item,index) =>{
+                            return(
+                                <th key={index} >{item.table}</th>
+                            );
+                        })}
+                    </tr>
+
+                        {Api.map((item, index) =>{
+                            return(
+                                <tr key={index}>
+                                    <td >{item.name}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.description}</td>
+                                    <td>{item.stars}</td>
+                                </tr>
+                            );
+                        })}
+                        </tbody>
+                    {/* <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th> 
+                        <th>Age</th>
+                        <th>Year</th>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                        <td>1999</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td>
+                        <td>94</td>
+                        <td>1888</td>
+                    </tr>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>80</td>
+                        <td>1950</td>
+                    </tr> */}
+                </Eval.Table>
+            </Eval.Content>
+        </Eval>
     )
 }

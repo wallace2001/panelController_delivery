@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Panel } from '../../Components/Panel';
 import db from '../../../pages/api/config.json';
-// import { SidebarData } from '../../../pages/api/info';
+import { falseApiEvaluation } from '../../../pages/api/hello';
 import { useRouter } from 'next/router';
 
 import { FaHamburger, FaCandyCane } from 'react-icons/fa';
@@ -20,6 +20,7 @@ import { Promo } from '../Promo';
 
 export const PanelConfig = ({ modal, setModal }) => {
     const [actived, setActived] = useState();
+    const tamEval = falseApiEvaluation.length;
 
     const SidebarData = [
         {
@@ -51,7 +52,7 @@ export const PanelConfig = ({ modal, setModal }) => {
             icon: <BiMoney />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Promo />,
+            component: <Promo modal={modal} setModal={setModal} />,
             current: false,
         },
     
@@ -90,17 +91,8 @@ export const PanelConfig = ({ modal, setModal }) => {
     
     ];
 
-    // const array = [
-    //     {title: <Hamburguer /> }, 
-    //     {title: <About /> }, 
-    //     {title:<Contact />}, 
-    //     {title: <Dessert />}, 
-    //     {title: <Evaluation />}, 
-    //     {title: <Promo />}];
     const info = SidebarData;
     const img = db.bgMenu;
-
-    console.log(SidebarData.map(item => item.title));
 
     return (
         <Panel>
@@ -134,7 +126,7 @@ export const PanelConfig = ({ modal, setModal }) => {
                                                 modal={modal}
                                                 >
                                                     <h4>{item.title}</h4>
-                                                    {item.current ? (<div active={isSelect ? 1 : 0}><h3>5</h3></div>) : ''}
+                                                    {item.current ? (<div active={isSelect ? 1 : 0}><h3>{tamEval}</h3></div>) : ''}
                                             </Panel.Title>
                                         </label>
                                 );

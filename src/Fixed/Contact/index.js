@@ -1,16 +1,12 @@
 import React from 'react'
-import styled from 'styled-components';
-
-const Div = styled.div`
-    h2{
-        color: black;
-    }
-`;
+import { Contain } from '../../Components/Contact';
 
 export const Contact = () => {
     return (
-        <Div>
-            <h2>Contato</h2>
-        </Div>
+        <Contain>
+            <Contain.Content>
+                <h1>Contato</h1>
+            </Contain.Content>
+        </Contain>
     )
 }

@@ -31,7 +31,7 @@ Div.Content = styled.div`
     flex-direction: row;
 `;
 
-Div.BoxHam = styled.div`
+Div.BoxProduct = styled.div`
     width: 100%;
     height: 100%;
 
@@ -47,13 +47,13 @@ Div.BoxHam = styled.div`
 
 Div.BoxAdd = styled.div`
     width: 20%;
-    height: 50px;
+    height: 100px;
     border-radius: 10px;
 
 
     background-color: #ccc;
 
-    margin: 50px 20px 0px 50px;
+    margin-top: 50px;
 
     cursor: pointer;
     transition: 0.2s ease;
@@ -61,9 +61,13 @@ Div.BoxAdd = styled.div`
     display: ${({ modal }) => modal ? 'none' : 'flex'};
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 800px){
+        width: 40%;
+    }
 `;
 
-Div.ContentHam = styled.div`
+Div.ContentProduct = styled.div`
     width: 100%;
     height: 100%;
 
@@ -74,7 +78,7 @@ Div.ContentHam = styled.div`
     flex-wrap: wrap;
 `;
 
-Div.Ham = styled.div`
+Div.Product = styled.div`
     width: 200px;
     height: 100%;
 

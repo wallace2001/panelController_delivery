@@ -8,13 +8,11 @@ export const Hamburguer = ({ modal, setModal }) => {
 
     const Api = falseApi;
 
-    console.log(modal);
-
     const showModal = () => setModal(!modal);
     return (
         <Div col={modal} >
             <Div.Content>
-                <Div.BoxHam>
+                <Div.BoxProduct>
                 <Div.BoxAdd
                         onMouseEnter={() => setHover(true)} 
                         onMouseLeave={() => setHover(false)} 
@@ -28,21 +26,21 @@ export const Hamburguer = ({ modal, setModal }) => {
                         cursor="pointer" 
                         />
                 </Div.BoxAdd>
-                <Div.ContentHam>
+                <Div.ContentProduct>
                     {Api.map((item, index) => {
                         return(
-                            <Div.Ham key={index}>
+                            <Div.Product key={index}>
                                 <img src={item.photo} alt={item.name} />
                                 <h2>{item.name}</h2>
                                 <p>{item.description}</p>
                                 <button className="price">{item.price}</button>
                                 <button className="delete">Excluir</button>
                                 <button className="edit">Editar</button>
-                            </Div.Ham>
+                            </Div.Product>
                         );
                     })}
-                    </Div.ContentHam>
-                </Div.BoxHam>
+                    </Div.ContentProduct>
+                </Div.BoxProduct>
             </Div.Content>
         </Div>
     )
