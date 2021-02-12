@@ -12,7 +12,13 @@
             "loginLabelColor": "black",
             "loginButtonWord": "white",
             "loginButtonColor": "#0057FF",
-            "colorContent": "white"
+            "colorContentModal": "rgba(0,0,0,.6)",
+            "colorsModal": "rgba(190,190,190)",
+            "colorContent": "rgba(255,255,255)",
+            "colorButtonPrice": "#D3A500",
+            "colorButtonDelete": "#FF0000",
+            "colorButtonEdit": "#00A1D3",
+            "backgroundImgBlack": "rgba(0,0,0,.3)"
         }
     }
 }

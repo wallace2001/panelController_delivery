@@ -1,4 +1,4 @@
-import { FaHamburger, FaCandyCane, FaHome } from 'react-icons/fa';
+import { FaHamburger, FaCandyCane } from 'react-icons/fa';
 import { BiMoney, BiPhone } from 'react-icons/bi';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import { AiOutlineStar, AiOutlineTeam } from 'react-icons/ai';

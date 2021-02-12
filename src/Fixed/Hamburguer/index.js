@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
 import { Div } from '../../Components/Hamburguer';
 import { BiPlus } from 'react-icons/bi';
-import { Modals } from '../Modal';
+import { falseApi } from '../../../pages/api/hello';
 
-export const Hamburguer = () => {
+export const Hamburguer = ({ modal, setModal }) => {
     const [hover, setHover] = useState();
-    const [modal, setModal] = useState(false);
+
+    const Api = falseApi;
 
     console.log(modal);
 
     const showModal = () => setModal(!modal);
     return (
         <Div col={modal} >
-            <Modals modal={modal} setModal={setModal} showModal={showModal} />
             <Div.Content>
+                <Div.BoxHam>
                 <Div.BoxAdd
                         onMouseEnter={() => setHover(true)} 
                         onMouseLeave={() => setHover(false)} 
@@ -27,6 +28,21 @@ export const Hamburguer = () => {
                         cursor="pointer" 
                         />
                 </Div.BoxAdd>
+                <Div.ContentHam>
+                    {Api.map((item, index) => {
+                        return(
+                            <Div.Ham key={index}>
+                                <img src={item.photo} alt={item.name} />
+                                <h2>{item.name}</h2>
+                                <p>{item.description}</p>
+                                <button className="price">{item.price}</button>
+                                <button className="delete">Excluir</button>
+                                <button className="edit">Editar</button>
+                            </Div.Ham>
+                        );
+                    })}
+                    </Div.ContentHam>
+                </Div.BoxHam>
             </Div.Content>
         </Div>
     )
