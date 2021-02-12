@@ -26,12 +26,6 @@ Panel.Content = styled.div`
 
 `;
 
-Panel.Navigation = styled.div`
-    width: 200px;
-    height: 100px;
-    background-color: #ccc
-`;
-
 Panel.Box = styled.div`
     width: 100%;
     height: 100%;
@@ -54,7 +48,7 @@ Panel.Box = styled.div`
 Panel.Control = styled.div`
     width: ${({ info }) => info ? '250px' : `900px`};
     height: ${({ info, model }) => info ? '100%' : model ? '461px' : '80px'};
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.colorContent};
 
     display: ${({ info }) => info ? "flex" : ''};
     justify-content: center;

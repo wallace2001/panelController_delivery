@@ -11,7 +11,8 @@
             "loginWordColor": "black",
             "loginLabelColor": "black",
             "loginButtonWord": "white",
-            "loginButtonColor": "#0057FF"
+            "loginButtonColor": "#0057FF",
+            "colorContent": "white"
         }
     }
 }
