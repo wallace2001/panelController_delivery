@@ -10,7 +10,7 @@ export const Evaluation = () => {
         <Eval>
             <Eval.Content>
                 <Eval.Table>
-                    <tbody>
+                    <thead>
                     <tr>
                         {tableA.map((item,index) =>{
                             return(
@@ -18,7 +18,8 @@ export const Evaluation = () => {
                             );
                         })}
                     </tr>
-
+                    </thead>
+                    <tbody>
                         {Api.map((item, index) =>{
                             return(
                                 <tr key={index}>
