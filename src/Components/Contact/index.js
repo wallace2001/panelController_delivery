@@ -122,3 +122,17 @@ Contain.Wrap = styled.div`
         }
     }
 `;
+
+Contain.Add = styled.div`
+    width: 70px;
+    height: 70px;
+    
+    margin-top: 20px;
+    border-radius: 35px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #ccc;
+`;

@@ -1,4 +1,5 @@
 import React from 'react'
+import { BiPlus } from 'react-icons/bi';
 import { Contain } from '../../Components/Contact';
 
 export const Contact = () => {
@@ -18,6 +19,7 @@ export const Contact = () => {
                     <h4>(61)99178-6805</h4>
                     <button className="delete">Excluir</button>
                     <button className="edit">Editar</button>
+                    <Contain.Add><BiPlus size={30} color="black" /></Contain.Add>
                 </Contain.Wrap>
                 <Contain.Wrap>
                     <h2>WhatsApp</h2>
@@ -27,12 +29,14 @@ export const Contact = () => {
                     <h4>(61)99178-6805</h4>
                     <button className="delete">Excluir</button>
                     <button className="edit">Editar</button>
+                    <Contain.Add><BiPlus size={30} color="black" /></Contain.Add>
                 </Contain.Wrap>
                 <Contain.Wrap>
                     <h2>Ifood</h2>
                     <h4>https://ifood/incrivel/inpout</h4>
                     <button className="delete">Excluir</button>
                     <button className="edit">Editar</button>
+                    <Contain.Add><BiPlus size={30} color="black" /></Contain.Add>
                 </Contain.Wrap>
             </Contain.Content>
         </Contain>
