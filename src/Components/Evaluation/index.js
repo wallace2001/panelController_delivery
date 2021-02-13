@@ -76,7 +76,6 @@ Eval.Table = styled.table`
                 }
             }
         }
-    }
 
     td{
         color: black;
