@@ -24,6 +24,8 @@ Header.Icon = styled.div`
     height: 50px;
     z-index: 999;
 
+    opacity: ${({ onclick }) => onclick ? 0 : 1};
+
     border-radius: 10px;
     position: relative;
 
@@ -108,6 +110,7 @@ Header.Nav = styled.div`
 Header.Wrap = styled.div`
     padding-top: 40%;
     width: 100%;
+    position: relative;
 `;
 
 Header.Space = styled.div``;

@@ -63,7 +63,7 @@ Panel.Control = styled.div`
     flex-direction: ${({ info }) => info ? "column" : ''};
 
     margin-bottom: 100px;
-    border-radius: ${({ info }) => info ? "0" : '10px 10px 10px 10px'};
+    /* border-radius: ${({ info }) => info ? "0" : '10px 10px 10px 10px'}; */
 
 
     @media screen and (max-width: 1100px){
@@ -101,7 +101,7 @@ Panel.Title = styled.div`
     justify-content: space-between;
 
 
-    border-radius: ${({ info }) => info ? "0" : '10px 10px 0px 0px'};
+    /* border-radius: ${({ info }) => info ? "0" : '10px 10px 0px 0px'}; */
 
     background-color: ${({ modal, theme }) => modal ? theme.colors.colorContentModal : theme.colors.colorContent};
     background-color: ${({ active, data_selected, theme, modal }) => active ? `${theme.colors.panelColor}` : `${data_selected ? `${panel}` : ''}`};
