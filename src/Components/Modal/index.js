@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Modal = styled.div`
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -66,10 +67,10 @@ Modal.Box = styled.div`
 
     background-color: ${({ theme }) => theme.colors.colorContent};
 
-    margin-top: 50%;
+    //margin-top: 50%;
     padding: 0% 3% 3% 3%;
 
-    @media screen and (max-width: 1400px){
+    /* @media screen and (max-width: 1400px){
         margin-top: 70%;
     }
 
@@ -87,7 +88,7 @@ Modal.Box = styled.div`
 
     @media screen and (max-width: 700px){
         margin-top: 180%;
-    }
+    } */
 `;
 
 Modal.Form = styled.form`

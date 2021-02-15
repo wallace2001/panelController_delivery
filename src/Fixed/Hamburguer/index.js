@@ -3,14 +3,34 @@ import { Div } from '../../Components/Hamburguer';
 import { BiPlus } from 'react-icons/bi';
 import { falseApi } from '../../../pages/api/hello';
 
-export const Hamburguer = ({ modal, setModal }) => {
+export const Hamburguer = ({ modal, 
+    setModal, 
+    edit, 
+    setEdit, 
+    delet, 
+    setDelet,
+    setIsPromo ,
+    setIsDessert,
+    setIsHamburguer,
+    setIsAbout,
+    setIsContact }) => {
     const [hover, setHover] = useState();
 
     const Api = falseApi;
 
+    const handleClick = () => {
+        console.log('teste');
+        setDelet(!delet);
+        setIsDessert(false); 
+        setIsPromo(false);
+        setIsHamburguer(true);
+        setIsAbout(false);
+        setIsContact(false);
+    }
+
     const showModal = () => setModal(!modal);
     return (
-        <Div col={modal} >
+        <Div col={modal}>
             <Div.Content>
                 <Div.BoxProduct>
                 <Div.BoxAdd
@@ -18,6 +38,8 @@ export const Hamburguer = ({ modal, setModal }) => {
                         onMouseLeave={() => setHover(false)} 
                         scal={hover}
                         modal={modal}
+                        edit={edit}
+                        delet={delet}
                         onClick={showModal}
                         >
                     <BiPlus 
@@ -34,8 +56,8 @@ export const Hamburguer = ({ modal, setModal }) => {
                                 <h2>{item.name}</h2>
                                 <p>{item.description}</p>
                                 <button className="price">{item.price}</button>
-                                <button className="delete">Excluir</button>
-                                <button className="edit">Editar</button>
+                                <button className="delete" onClick={handleClick}>Excluir</button>
+                                <button className="edit" onClick={() => setEdit(!edit)}>Editar</button>
                             </Div.Product>
                         );
                     })}

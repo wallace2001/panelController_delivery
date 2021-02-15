@@ -16,11 +16,27 @@ import { Dessert } from '../Dessert';
 import { Evaluation } from '../Evaluation';
 import { Promo } from '../Promo';
 
+import { Modals } from '../Modal';
+import { ModalsEditAndDelete } from '../ModalsEditAndDelete';
 
 
-export const PanelConfig = ({ modal, setModal }) => {
+
+export const PanelConfig = () => {
     const [actived, setActived] = useState();
+    const [modal, setModal] = useState(false);
+    const [edit, setEdit] = useState(false);
+    const [edit2, setEdit2] = useState(false);
+    const [delet, setDelet] = useState(false);
+    const [addContact, setAddContact] = useState(false);
+    const [isContact, setIsContact] = useState(false);
+    const [isAbout, setIsAbout] = useState(false);
+    const [isPromo, setIsPromo] = useState(false);
+    const [isHamburguer, setIsHamburguer] = useState(false);
+    const [isDessert, setIsDessert] = useState(false);
     const tamEval = falseApiEvaluation.length;
+
+    // edit === modal ? setModal(!modal) : '';
+
 
     const SidebarData = [
         {
@@ -30,7 +46,7 @@ export const PanelConfig = ({ modal, setModal }) => {
             icon: <FaHamburger />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Hamburguer modal={modal} setModal={setModal} />,
+            component: <Hamburguer setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
             current: false,
         },
         
@@ -41,7 +57,7 @@ export const PanelConfig = ({ modal, setModal }) => {
             icon: <FaCandyCane />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Dessert modal={modal} setModal={setModal} />,
+            component: <Dessert setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
             current: false,
         },
     
@@ -52,7 +68,7 @@ export const PanelConfig = ({ modal, setModal }) => {
             icon: <BiMoney />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Promo modal={modal} setModal={setModal} />,
+            component: <Promo setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer}  delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
             current: false,
         },
     
@@ -74,7 +90,7 @@ export const PanelConfig = ({ modal, setModal }) => {
             icon: <BiPhone />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Contact />,
+            component: <Contact setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} addContact={addContact} setAddContact={setAddContact} delet={delet} setDelet={setDelet} edit={edit2} setEdit={setEdit2} />,
             current: false,
         },
     
@@ -85,7 +101,7 @@ export const PanelConfig = ({ modal, setModal }) => {
             icon: <AiOutlineTeam />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <About />,
+            component: <About setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} edit={edit2} setEdit={setEdit2} />,
             current: false,
         },
     
@@ -97,7 +113,9 @@ export const PanelConfig = ({ modal, setModal }) => {
     return (
         <Panel>
             <Panel.Bg backgroundImg={img}>
-                <Panel.Black modal={modal}>
+                <Panel.Black modal={modal} edit={edit}>
+                    <ModalsEditAndDelete setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} isHamburguer={isHamburguer} isPromo={isPromo} isDessert={isDessert} isContact={isContact} isAbout={isAbout} addContact={addContact} setAddContact={setAddContact} delet={delet} edit={edit2} setDelet={setDelet} setEdit={setEdit2} />
+                    <Modals modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} />
                     <Panel.Content>
                         <Panel.Box info={true}>
                         <Panel.Control info={true}>
@@ -122,8 +140,14 @@ export const PanelConfig = ({ modal, setModal }) => {
                                                 data_selected={isSelect ? 1 : 0}
                                                 p={true} 
                                                 info={true} 
+                                                edit={edit ? 1 : 0}
+                                                about={isAbout ? 1 : 0}
+                                                hamb={isHamburguer ? 1 : 0}
+                                                contact={isContact ? 1 : 0}
+                                                dessert={isDessert ? 1 : 0}
+                                                promo={isPromo ? 1 : 0}
+                                                modal={modal ? 1 : 0}
                                                 bottom={item.bottom}
-                                                modal={modal}
                                                 >
                                                     <h4>{item.title}</h4>
                                                     {item.current ? (<div active={isSelect ? 1 : 0}><h3>{tamEval}</h3></div>) : ''}
@@ -141,12 +165,31 @@ export const PanelConfig = ({ modal, setModal }) => {
                                 const [active, setActive] = useState(false);
                                 const [icon, setIcon] = useState(false);
                                 return(
-                                    <Panel.Control modal={modal} key={index} id={item.path} info={false} model={active} >
+                                    <Panel.Control 
+                                    key={index} 
+                                    id={item.path} 
+                                    info={false} 
+                                    model={active}
+                                    modal={modal ? 1 : 0}
+                                    edit={edit ? 1 : 0}
+                                    about={isAbout ? 1 : 0}
+                                    hamb={isHamburguer ? 1 : 0}
+                                    contact={isContact ? 1 : 0}
+                                    dessert={isDessert ? 1 : 0}
+                                    promo={isPromo ? 1 : 0} >
                                         <Panel.Title
                                             onClick={() => {current && setActive(active) ? setActive(!active) : setActive(!active); setIcon(!icon); }}
                                             active={true}
                                             p={true}
                                             icon={true}
+                                            edit={edit ? 1 : 0}
+                                            model={active}
+                                            modal={modal ? 1 : 0}
+                                            about={isAbout ? 1 : 0}
+                                            hamb={isHamburguer ? 1 : 0}
+                                            contact={isContact ? 1 : 0}
+                                            dessert={isDessert ? 1 : 0}
+                                            promo={isPromo ? 1 : 0}
                                             
                                             >
                                             

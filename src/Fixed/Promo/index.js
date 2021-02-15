@@ -3,10 +3,31 @@ import { Div } from '../../Components/Hamburguer';
 import { BiPlus } from 'react-icons/bi';
 import { falseApiPromo } from '../../../pages/api/hello';
 
-export const Promo = ({ modal, setModal }) => {
+export const Promo = ({ 
+    modal, 
+    setModal, 
+    edit, 
+    setEdit, 
+    setDelet, 
+    delet,
+    setIsPromo ,
+    setIsDessert,
+    setIsHamburguer,
+    setIsAbout,
+    setIsContact }) => {
     const [hover, setHover] = useState();
 
     const Api = falseApiPromo;
+
+        const handleClick = () => {
+            setDelet(!delet)
+            setIsDessert(false); 
+            setIsPromo(true);
+            setIsHamburguer(false);
+            setIsAbout(false);
+            setIsContact(false);
+        }
+    
 
     const showModal = () => setModal(!modal);
     return (
@@ -18,6 +39,8 @@ export const Promo = ({ modal, setModal }) => {
                         onMouseLeave={() => setHover(false)} 
                         scal={hover}
                         modal={modal}
+                        edit={edit}
+                        delet={delet}
                         onClick={showModal}
                         >
                     <BiPlus 
@@ -34,8 +57,8 @@ export const Promo = ({ modal, setModal }) => {
                                 <h2>{item.name}</h2>
                                 <p>{item.description}</p>
                                 <button className="price">{item.price}</button>
-                                <button className="delete">Excluir</button>
-                                <button className="edit">Editar</button>
+                                <button className="delete" onClick={handleClick}>Excluir</button>
+                                <button className="edit" onClick={() => setEdit(!edit)}>Editar</button>
                             </Div.Product>
                         );
                     })}

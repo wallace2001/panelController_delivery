@@ -126,6 +126,8 @@ Contain.Wrap = styled.div`
 Contain.Add = styled.div`
     width: 70px;
     height: 70px;
+
+    cursor: pointer;
     
     margin-top: 20px;
     border-radius: 35px;
@@ -135,4 +137,8 @@ Contain.Add = styled.div`
     align-items: center;
 
     background-color: #ccc;
+
+    &:hover{
+        transform: scale(1.03);
+    }
 `;

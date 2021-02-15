@@ -58,7 +58,7 @@ Div.BoxAdd = styled.div`
     cursor: pointer;
     transition: 0.2s ease;
     transform: ${({ scal }) => scal ? 'scale(1.1)' : ''};
-    display: ${({ modal }) => modal ? 'none' : 'flex'};
+    display: ${({ modal, edit }) => modal || edit ? 'none' : 'flex'};
     justify-content: center;
     align-items: center;
 

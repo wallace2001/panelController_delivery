@@ -3,24 +3,25 @@ import { animated, useSpring } from 'react-spring';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { Modal } from '../../Components/Modal';
 
-export const Modals = ({ modal, setModal }) => {
+export const Modals = ({ modal, setModal, edit, setEdit }) => {
 
     const modalRef = useRef();
 
     const CloseModal = (e) => {
         if(modalRef.current === e.target){
-            console.log('teste');
+            setModal(false);
+            setEdit(false);
         }
     } 
 
     return (
         <>
-        {modal ? (
+        {modal || edit ? (
         <Modal ref={modalRef} onClick={CloseModal}>
                 <Modal.Box>
-                    <Modal.Close><IoIosCloseCircle size={30} color="black" cursor="pointer" onClick={() => setModal(prev => !prev)} /></Modal.Close>
+                    <Modal.Close><IoIosCloseCircle size={30} color="black" cursor="pointer" onClick={() => {edit ? setEdit(!edit) : modal ? setModal(!modal) : ''}} /></Modal.Close>
                     <Modal.Form>
-                        <h3>Adicionar novo prato!</h3>
+                        {edit ? (<h3>Editar prato</h3>) : (<h3>Adicionar novo prato</h3>)}
                         <Modal.Image>
                             <label>Escolha a imagem</label>
                             <input type="file" />

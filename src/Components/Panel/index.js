@@ -19,7 +19,7 @@ Panel.Bg = styled.div`
 Panel.Black = styled.div`
     width: 100%;
     height: 100%;
-    background-color: ${({ theme, modal }) => modal ? theme.colors.colorContentModal : theme.colors.backgroundImgBlack };
+    background-color: ${({ theme, modal, edit, hamb, about, promo, dessert, contact }) => modal || edit || hamb || about || promo || dessert || contact ? theme.colors.colorContentModal : theme.colors.backgroundImgBlack };
 `;
 
 Panel.Content = styled.div`
@@ -56,7 +56,7 @@ Panel.Control = styled.div`
     width: ${({ info }) => info ? '250px' : `900px`};
     height: ${({ info, model }) => info ? '100%' : model ? '100%' : '80px'};
 
-    background-color: ${({ modal, theme }) => modal ? theme.colors.colorsModal : theme.colors.colorContent};
+    background-color: ${({ modal, theme, edit, hamb, about, promo, dessert, contact }) => modal || edit || hamb || about || promo || dessert || contact ? theme.colors.colorsModal : theme.colors.colorContent};
 
     display: ${({ info }) => info ? "flex" : ''};
     justify-content: center;
@@ -103,7 +103,7 @@ Panel.Title = styled.div`
 
     /* border-radius: ${({ info }) => info ? "0" : '10px 10px 0px 0px'}; */
 
-    background-color: ${({ modal, theme }) => modal ? theme.colors.colorContentModal : theme.colors.colorContent};
+    background-color: ${({ modal, theme, edit, hamb, about, promo, dessert, contact }) => modal || edit || hamb || about || promo || dessert || contact ? theme.colors.colorContentModal : theme.colors.colorContent};
     background-color: ${({ active, data_selected, theme, modal }) => active ? `${theme.colors.panelColor}` : `${data_selected ? `${panel}` : ''}`};
     color: ${({ active, data_selected, theme }) => active ? `${ theme.colors.secundary }` : `${data_selected ? `${ theme.colors.secundary }` : `${ theme.colors.primary }`}`};
 
