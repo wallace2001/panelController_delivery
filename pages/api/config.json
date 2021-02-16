@@ -5,6 +5,7 @@
             "primary": "black",
             "secundary": "white",
             "panelColor": "#242424",
+            "panelColorFixed" : "rgba(36,36,36,.9)",
             "colorMenu": "white",
             "boxLogin": "white",
             "loginColor": "black",

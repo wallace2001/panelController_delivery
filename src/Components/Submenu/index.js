@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from "react-scroll";
 
-export const SidebarLink = styled.a`
+export const SidebarLink = styled(Link)`
     height: 60px;
     padding: 10px 20px;
     display: flex;
@@ -10,6 +10,7 @@ export const SidebarLink = styled.a`
     align-items: center;
     cursor: pointer;
     padding-left: 3rem;
+    position: sticky;
 
     &:hover{
         background-color: #252832;
@@ -18,7 +19,7 @@ export const SidebarLink = styled.a`
 
 `;
 
-SidebarLink.DropDownLink = styled.a`
+SidebarLink.DropDownLink = styled(Link)`
     height: 60px;
     display: flex;
     align-items: center;
@@ -34,7 +35,7 @@ SidebarLink.DropDownLink = styled.a`
 
 `;
 
-SidebarLink.Label = styled(Link)`
+SidebarLink.Label = styled.span`
     font-size: 16px;
     text-align: center;
     
@@ -49,7 +50,7 @@ SidebarLink.Label = styled(Link)`
 
 `;
 
-SidebarLink.Label1 = styled(Link)`
+SidebarLink.Label1 = styled.span`
     font-size: 15px;
     text-align: center;
     

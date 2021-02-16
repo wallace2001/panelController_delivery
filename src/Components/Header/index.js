@@ -3,8 +3,10 @@ import styled from 'styled-components';
 export const Header = styled.div`
     width: 100%;
     height: 50px;
+    position: fixed;
+    z-index: 1000;
 
-    background-color: ${({ color }) => color ? color : "black"};
+    background-color: ${({ color, scrollNav, theme }) => scrollNav ? theme.colors.panelColorFixed  : color};
 `;
 
 Header.content = styled.div`
