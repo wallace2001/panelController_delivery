@@ -3,6 +3,7 @@ import React from 'react';
 
 export  const  falseApi  =  [
   {
+      id: 0,
       name : "Big Tasty" ,
       price : "R$ 29,90" ,
       description : "Hamburguer de frango com uma pimenta picante!" ,
@@ -10,6 +11,7 @@ export  const  falseApi  =  [
   } ,
 
   {
+    id: 1,
     name : "Big Tasty" ,
     price : "R$ 29,90" ,
     description : "Hamburguer de frango com uma pimenta picante!" ,
@@ -17,6 +19,7 @@ export  const  falseApi  =  [
   } ,
 
   {
+    id: 2,
     name : "Big Tasty" ,
     price : "R$ 29,90" ,
     description : "Hamburguer de frango com uma pimenta picante!" ,
@@ -24,6 +27,7 @@ export  const  falseApi  =  [
   } ,
 
   {
+    id: 3,
     name : "Big Tasty" ,
     price : "R$ 29,90" ,
     description : "Hamburguer de frango com uma pimenta picante!" ,
@@ -31,6 +35,7 @@ export  const  falseApi  =  [
 } ,
 
 {
+  id: 4,
   name : "Big Tasty" ,
   price : "R$ 29,90" ,
   description : "Hamburguer de frango com uma pimenta picante!" ,
@@ -38,6 +43,7 @@ export  const  falseApi  =  [
 } ,
 
 {
+  id: 5,
   name : "Big Tasty" ,
   price : "R$ 29,90" ,
   description : "Hamburguer de frango com uma pimenta picante!" ,

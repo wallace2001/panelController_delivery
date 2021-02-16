@@ -3,7 +3,9 @@ import { Div } from '../../Components/Hamburguer';
 import { BiPlus } from 'react-icons/bi';
 import { falseApi } from '../../../pages/api/hello';
 
-export const Hamburguer = ({ modal, 
+export const Hamburguer = ({ 
+    setIdProduct,
+    modal, 
     setModal, 
     edit, 
     setEdit, 
@@ -18,14 +20,16 @@ export const Hamburguer = ({ modal,
 
     const Api = falseApi;
 
-    const handleClick = () => {
-        console.log('teste');
+    const handleClick = (e) => {
+        const id = e.target.id;
         setDelet(!delet);
         setIsDessert(false); 
         setIsPromo(false);
         setIsHamburguer(true);
         setIsAbout(false);
         setIsContact(false);
+
+        setIdProduct(Api[id]);
     }
 
     const showModal = () => setModal(!modal);
@@ -56,7 +60,7 @@ export const Hamburguer = ({ modal,
                                 <h2>{item.name}</h2>
                                 <p>{item.description}</p>
                                 <button className="price">{item.price}</button>
-                                <button className="delete" onClick={handleClick}>Excluir</button>
+                                <button className="delete" id={index} onClick={handleClick}>Excluir</button>
                                 <button className="edit" onClick={() => setEdit(!edit)}>Editar</button>
                             </Div.Product>
                         );

@@ -1,11 +1,12 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import { Modals } from '../../Components/ModalsEditAndDelete';
 import { IoIosCloseCircle } from 'react-icons/io';
+import { falseApi } from '../../../pages/api/hello';
 
-export const ModalsEditAndDelete = ({ 
+export const ModalsEditAndDelete = ({
+    idProduct,
     delet, 
     edit,
-    click,
     setEdit, 
     setDelet, 
     addContact, 
@@ -36,13 +37,15 @@ export const ModalsEditAndDelete = ({
         }
 
         const handleClick = () => {
-            setDelet(!delet);
+            setDelet(!delet)
             setIsDessert(false); 
             setIsPromo(false);
-            setIsHamburguer(false);
+            setIsHamburguer(true);
             setIsAbout(false);
             setIsContact(false);
         }
+
+
     return (
         <Modals edit={edit} delet={delet} addContact={addContact} ref={modalRef} onClick={CloseModal}>
             <Modals.Wrapper>
@@ -70,21 +73,32 @@ export const ModalsEditAndDelete = ({
                                     <button className="nodelete" onClick={handleClick}>Não</button>
                                 </>
                             ): isHamburguer ? (
-                                <>
+                                <Modals.Ham>
                                     <h3>Deletar Hamburguer</h3>
-                                </>
+                                    <img src={idProduct.photo} alt={idProduct.name}/>
+                                    <h2>{idProduct.name}</h2>
+                                    <p>{idProduct.description}</p>
+                                    <button className="price">{idProduct.price}</button>
+                                    <button className="delete">Excluir</button>
+                                </Modals.Ham>
                             ): isPromo ? (
-                                <>
-                                    <h3>Deletar da promoção</h3>
-                                </>
+                                <Modals.Promo>
+                                    <h3>Deletar Sobremesa</h3>
+                                    <img src={idProduct.photo} alt={idProduct.name}/>
+                                    <h2>{idProduct.name}</h2>
+                                    <p>{idProduct.description}</p>
+                                    <button className="price">{idProduct.price}</button>
+                                    <button className="delete">Excluir</button>
+                                </Modals.Promo>
                             ): isDessert ? (
-                                <>
-                                    <h3>Deletar sobremesas</h3>
-                                </>
-                            ): isAbout ? (
-                                <>
-                                    <h3>Deletar sobre</h3>
-                                </>
+                                <Modals.Dessert>
+                                    <h3>Deletar Sobremesa</h3>
+                                    <img src={idProduct.photo} alt={idProduct.name}/>
+                                    <h2>{idProduct.name}</h2>
+                                    <p>{idProduct.description}</p>
+                                    <button className="price">{idProduct.price}</button>
+                                    <button className="delete">Excluir</button>
+                                </Modals.Dessert>
                             ): null}
                         </>
                     ): edit ? (
@@ -96,7 +110,7 @@ export const ModalsEditAndDelete = ({
                                     <input type="text" placeholder="Exemplo: (61)99178-6805" />
                                 </>
                             ): (
-                                <>
+                                <Modals.About>
                                     <h3>Editar</h3>
                                     <label>Título</label>
                                     <input type="text" placeholder="Titulo" />
@@ -107,10 +121,10 @@ export const ModalsEditAndDelete = ({
                                     <button className="nodelete">Editar</button>
                                     <button className="delete" onClick={() => setDelet(!delet)}>Cancelar</button>
                                     </div>
-                                </>
+                                </Modals.About>
                             )}
                         </>
-                    ) : addContact && isContact ? (
+                    ) : addContact ? (
                         <>
                             <h3>Adicionar Contato</h3>
                         </>

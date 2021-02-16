@@ -4,6 +4,7 @@ import { BiPlus } from 'react-icons/bi';
 import { falseApiPromo } from '../../../pages/api/hello';
 
 export const Promo = ({ 
+    setIdProduct,
     modal, 
     setModal, 
     edit, 
@@ -19,13 +20,15 @@ export const Promo = ({
 
     const Api = falseApiPromo;
 
-        const handleClick = () => {
+        const handleClick = (e) => {
             setDelet(!delet)
             setIsDessert(false); 
             setIsPromo(true);
             setIsHamburguer(false);
             setIsAbout(false);
             setIsContact(false);
+
+            setIdProduct(Api[e.target.id])
         }
     
 
@@ -57,7 +60,7 @@ export const Promo = ({
                                 <h2>{item.name}</h2>
                                 <p>{item.description}</p>
                                 <button className="price">{item.price}</button>
-                                <button className="delete" onClick={handleClick}>Excluir</button>
+                                <button className="delete" id={index} onClick={handleClick}>Excluir</button>
                                 <button className="edit" onClick={() => setEdit(!edit)}>Editar</button>
                             </Div.Product>
                         );

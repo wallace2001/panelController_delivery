@@ -6,6 +6,7 @@ export const Modal = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 999;
 
 
     transition: 0.2s ease;

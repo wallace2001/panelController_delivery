@@ -23,6 +23,15 @@ export const Contact = ({
             setIsAbout(false);
             setIsContact(true);
         }
+
+        const handleEdit = () => {
+            setEdit(!edit)
+            setIsDessert(false); 
+            setIsPromo(false);
+            setIsHamburguer(false);
+            setIsAbout(false);
+            setIsContact(true);
+        }
     return (
         <Contain>
             <Contain.Fixed>
@@ -35,27 +44,27 @@ export const Contact = ({
                     <h2>Telefone</h2>
                     <h4>(61)99178-6805</h4>
                     <button className="delete" onClick={handleClick}>Excluir</button>
-                    <button className="edit" onClick={() => setEdit(!edit)}>Editar</button>
+                    <button className="edit" onClick={handleEdit}>Editar</button>
                     <h4>(61)99178-6805</h4>
                     <button className="delete" onClick={handleClick}>Excluir</button>
-                    <button className="edit" onClick={() => setEdit(!edit)}>Editar</button>
+                    <button className="edit" onClick={handleEdit}>Editar</button>
                     <Contain.Add onClick={() => setAddContact(!addContact)}><BiPlus size={30} color="black"/></Contain.Add>
                 </Contain.Wrap>
                 <Contain.Wrap>
                     <h2>WhatsApp</h2>
                     <h4>(61)99178-6805</h4>
                     <button className="delete" onClick={handleClick} >Excluir</button>
-                    <button className="edit" onClick={() => setEdit(!edit)}>Editar</button>
+                    <button className="edit" onClick={handleEdit}>Editar</button>
                     <h4>(61)99178-6805</h4>
                     <button className="delete" onClick={handleClick}>Excluir</button>
-                    <button className="edit" onClick={() => setEdit(!edit)}>Editar</button>
+                    <button className="edit" onClick={handleEdit}>Editar</button>
                     <Contain.Add onClick={() => setAddContact(!addContact)}><BiPlus size={30} color="black" /></Contain.Add>
                 </Contain.Wrap>
                 <Contain.Wrap>
                     <h2>Ifood</h2>
                     <h4>https://ifood/incrivel/inpout</h4>
                     <button className="delete" onClick={handleClick}>Excluir</button>
-                    <button className="edit" onClick={() => setEdit(!edit)}>Editar</button>
+                    <button className="edit" onClick={handleEdit}>Editar</button>
                     <Contain.Add onClick={() => setAddContact(!addContact)}><BiPlus size={30} color="black" /></Contain.Add>
                 </Contain.Wrap>
             </Contain.Content>

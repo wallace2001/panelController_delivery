@@ -33,10 +33,12 @@ export const PanelConfig = () => {
     const [isPromo, setIsPromo] = useState(false);
     const [isHamburguer, setIsHamburguer] = useState(false);
     const [isDessert, setIsDessert] = useState(false);
+    const [idProduct, setIdProduct] = useState(undefined);
     const tamEval = falseApiEvaluation.length;
 
     // edit === modal ? setModal(!modal) : '';
 
+    console.log(addContact);
 
     const SidebarData = [
         {
@@ -46,7 +48,7 @@ export const PanelConfig = () => {
             icon: <FaHamburger />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Hamburguer setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
+            component: <Hamburguer idProduct={idProduct} setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
             current: false,
         },
         
@@ -57,7 +59,7 @@ export const PanelConfig = () => {
             icon: <FaCandyCane />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Dessert setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
+            component: <Dessert setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
             current: false,
         },
     
@@ -68,7 +70,7 @@ export const PanelConfig = () => {
             icon: <BiMoney />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Promo setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer}  delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
+            component: <Promo setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer}  delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
             current: false,
         },
     
@@ -113,8 +115,16 @@ export const PanelConfig = () => {
     return (
         <Panel>
             <Panel.Bg backgroundImg={img}>
-                <Panel.Black modal={modal} edit={edit}>
-                    <ModalsEditAndDelete setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} isHamburguer={isHamburguer} isPromo={isPromo} isDessert={isDessert} isContact={isContact} isAbout={isAbout} addContact={addContact} setAddContact={setAddContact} delet={delet} edit={edit2} setDelet={setDelet} setEdit={setEdit2} />
+                <Panel.Black 
+                    edit={edit ? 1 : 0}
+                    about={isAbout ? 1 : 0}
+                    hamb={isHamburguer ? 1 : 0}
+                    contact={isContact ? 1 : 0}
+                    dessert={isDessert ? 1 : 0}
+                    promo={isPromo ? 1 : 0}
+                    modal={modal ? 1 : 0}
+                >
+                    <ModalsEditAndDelete idProduct={idProduct} setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} isHamburguer={isHamburguer} isPromo={isPromo} isDessert={isDessert} isContact={isContact} isAbout={isAbout} addContact={addContact} setAddContact={setAddContact} delet={delet} edit={edit2} setDelet={setDelet} setEdit={setEdit2} />
                     <Modals modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} />
                     <Panel.Content>
                         <Panel.Box info={true}>
@@ -147,6 +157,7 @@ export const PanelConfig = () => {
                                                 dessert={isDessert ? 1 : 0}
                                                 promo={isPromo ? 1 : 0}
                                                 modal={modal ? 1 : 0}
+                                                edit2={edit2}
                                                 bottom={item.bottom}
                                                 >
                                                     <h4>{item.title}</h4>
@@ -176,6 +187,7 @@ export const PanelConfig = () => {
                                     hamb={isHamburguer ? 1 : 0}
                                     contact={isContact ? 1 : 0}
                                     dessert={isDessert ? 1 : 0}
+                                    edit2={edit2}
                                     promo={isPromo ? 1 : 0} >
                                         <Panel.Title
                                             onClick={() => {current && setActive(active) ? setActive(!active) : setActive(!active); setIcon(!icon); }}
@@ -188,6 +200,7 @@ export const PanelConfig = () => {
                                             about={isAbout ? 1 : 0}
                                             hamb={isHamburguer ? 1 : 0}
                                             contact={isContact ? 1 : 0}
+                                            edit2={edit2}
                                             dessert={isDessert ? 1 : 0}
                                             promo={isPromo ? 1 : 0}
                                             
