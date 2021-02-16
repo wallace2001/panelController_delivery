@@ -3,11 +3,11 @@ import { Eval } from '../../Components/Evaluation';
 import { falseApiEvaluation } from '../../../pages/api/hello';
 import { tableApi } from '../../../pages/api/hello';
 
-export const Evaluation = () => {
+export const Evaluation = ({ scroll }) => {
     const Api = falseApiEvaluation;
     const tableA = tableApi;
     return (
-        <Eval>
+        <Eval id={scroll[3].path}>
             <Eval.Content>
                 <Eval.Table>
                     <thead>

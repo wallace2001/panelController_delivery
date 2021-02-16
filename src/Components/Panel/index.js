@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import db from '../../../pages/api/config.json';
 const panel = db.theme.colors.panelColor;
 const word = db.theme.colors.primary;
+import { Link } from 'react-scroll';
 
 export const Panel = styled.div`
     width: 100%;
@@ -19,7 +20,7 @@ Panel.Bg = styled.div`
 Panel.Black = styled.div`
     width: 100%;
     height: 100%;
-    background-color: ${({ theme, modal, edit, hamb, about, promo, dessert, contact, edit2 }) => modal || edit2 || edit || hamb || about || promo || dessert || contact ? theme.colors.colorContentModal : theme.colors.backgroundImgBlack };
+    background-color: ${({ theme, modal, edit, hamb, about, promo, dessert, contact, edit2, addContact }) => modal || edit2 || addContact || edit || hamb || about || promo || dessert || contact ? theme.colors.colorContentModal : theme.colors.backgroundImgBlack };
 `;
 
 Panel.Content = styled.div`
@@ -56,7 +57,7 @@ Panel.Control = styled.div`
     width: ${({ info }) => info ? '250px' : `900px`};
     height: ${({ info, model }) => info ? '100%' : model ? '100%' : '80px'};
 
-    background-color: ${({ modal, theme, edit, hamb, about, promo, dessert, contact, edit2 }) => modal || edit2 || edit || hamb || about || promo || dessert || contact ? theme.colors.colorsModal : theme.colors.colorContent};
+    background-color: ${({ modal, theme, edit, hamb, about, promo, dessert, contact, edit2, addContact }) => modal || addContact || edit2 || edit || hamb || about || promo || dessert || contact ? theme.colors.colorsModal : theme.colors.colorContent};
 
     display: ${({ info }) => info ? "flex" : ''};
     justify-content: center;
@@ -103,7 +104,7 @@ Panel.Title = styled.div`
 
     /* border-radius: ${({ info }) => info ? "0" : '10px 10px 0px 0px'}; */
 
-    background-color: ${({ modal, theme, edit, hamb, about, promo, dessert, contact, edit2 }) => modal || edit2 || edit || hamb || about || promo || dessert || contact ? theme.colors.colorContentModal : theme.colors.colorContent};
+    background-color: ${({ modal, theme, edit, hamb, about, promo, dessert, contact, edit2, addContact }) => modal || addContact || edit2 || edit || hamb || about || promo || dessert || contact ? theme.colors.colorContentModal : theme.colors.colorContent};
     background-color: ${({ active, data_selected, theme, modal }) => active ? `${theme.colors.panelColor}` : `${data_selected ? `${panel}` : ''}`};
     color: ${({ active, data_selected, theme }) => active ? `${ theme.colors.secundary }` : `${data_selected ? `${ theme.colors.secundary }` : `${ theme.colors.primary }`}`};
 
@@ -153,7 +154,7 @@ Panel.Title = styled.div`
 
         position: relative;
         top: 8px;
-        right: 10%; 
+        right: 10%;
 
         h3{
             text-align: center;
@@ -163,4 +164,11 @@ Panel.Title = styled.div`
             bottom: 8px;
         }
     }
+`;
+
+Panel.LinkScroll = styled(Link)`
+    position: relative;
+    top:20px;
+    left: 50px;
+    text-align: center;
 `;

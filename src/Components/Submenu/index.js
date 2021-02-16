@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from "react-scroll";
 
 export const SidebarLink = styled.a`
     height: 60px;
@@ -33,7 +34,7 @@ SidebarLink.DropDownLink = styled.a`
 
 `;
 
-SidebarLink.Label = styled.span`
+SidebarLink.Label = styled(Link)`
     font-size: 16px;
     text-align: center;
     
@@ -46,10 +47,9 @@ SidebarLink.Label = styled.span`
     text-decoration: none;
     margin-left: 10px;
 
-
 `;
 
-SidebarLink.Label1 = styled.span`
+SidebarLink.Label1 = styled(Link)`
     font-size: 15px;
     text-align: center;
     

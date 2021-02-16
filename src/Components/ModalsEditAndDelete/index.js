@@ -313,6 +313,32 @@ Modals.About = styled.div`
     justify-content: center;
     flex-direction: column;
 
+    input{
+        width: 70%;
+        height: 40px;
+        text-align: center;
+
+        outline: none;
+
+        &:focus{
+            border: 1px solid black;
+        }
+    }
+
+    textarea{
+        width: 100%;
+        height: 300px;
+        resize: none;
+
+        outline: none;
+
+        padding: 5%;
+
+        &:focus{
+            border: 1px solid black;
+        }
+    }
+
     div{
         display: flex;
         align-items: center;
@@ -346,7 +372,7 @@ Modals.About = styled.div`
         cursor: pointer;
 
         margin-top: 20px;
-        margin-left: 20px;
+
 
         color: ${({ theme }) => theme.colors.secundary};
         background-color: ${({ theme }) => theme.colors.colorButtonEdit};
@@ -365,5 +391,159 @@ Modals.About = styled.div`
         }
     }
 
+
+`;
+
+Modals.ContactEdit = styled.div`
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    h5{
+        text-align: center;
+        color: ${({ theme }) => theme.colors.primary};
+    }
+
+    input{
+        width: 70%;
+        height: 40px;
+        text-align: center;
+
+        outline: none;
+
+        &:focus{
+            border: 1px solid black;
+        }
+    }
+
+        button{
+        width: 100px;
+        height: 40px;
+
+        border: 0px;
+        outline: none;
+        cursor: pointer;
+
+        margin-top: 20px;
+
+        color: ${({ theme }) => theme.colors.secundary};
+        background-color: ${({ theme }) => theme.colors.colorButtonEdit};
+
+        &:hover{
+            transform: scale(1.04);
+        }
+    }
+`;
+
+Modals.Contact = styled.div`
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    input{
+        width: 70%;
+        height: 40px;
+        text-align: center;
+
+        outline: none;
+
+        &:focus{
+            border: 1px solid black;
+        }
+    }
+
+        .delete{
+        width: 100px;
+        height: 40px;
+
+        margin-top: 20px;
+
+        border: 0px;
+        outline: none;
+        cursor: pointer;
+
+        color: ${({ theme }) => theme.colors.secundary};
+        background-color: ${({ theme }) => theme.colors.colorButtonDelete};
+
+        &:hover{
+            transform: scale(1.04);
+        }
+    }
+
+    .nodelete{
+        width: 100px;
+        height: 40px;
+
+        border: 0px;
+        outline: none;
+        cursor: pointer;
+
+        margin-top: 20px;
+
+        color: ${({ theme }) => theme.colors.secundary};
+        background-color: ${({ theme }) => theme.colors.colorButtonEdit};
+
+        &:hover{
+            transform: scale(1.04);
+        }
+
+        @media screen and (max-width: 990px){
+            margin-top: 20px;
+            margin-left: 0px;
+        }
+    }
+        @media screen and (max-width: 990px){
+            flex-direction: column;
+        }
+
+`;
+
+Modals.ContactAdd = styled.div`
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    input{
+        width: 70%;
+        height: 40px;
+        text-align: center;
+
+        outline: none;
+
+        &:focus{
+            border: 1px solid black;
+        }
+    }
+
+    
+    button{
+        width: 100px;
+        height: 40px;
+
+        border: 0px;
+        outline: none;
+        cursor: pointer;
+
+        margin-top: 20px;
+
+        color: ${({ theme }) => theme.colors.secundary};
+        background-color: ${({ theme }) => theme.colors.colorButtonEdit};
+
+        &:hover{
+            transform: scale(1.04);
+        }
+    }
 
 `;

@@ -1,19 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Header } from '../../Components/Header';
 import { Open } from '../../Components/Navbar/Open';
 import { Close } from '../../Components/Navbar/Close.js';
 import { Subnav } from '../Submenu';
-
 import { SidebarData } from '../../../pages/api/info';
 
-export const Navbar = ({ color }) => {
+export const Navbar = ({ color, setNavbar, navbar }) => {
     const Sidebar = SidebarData;
-    const [navbar, setNavbar] = useState(false);
 
-    const showNavbar = () => setNavbar(!navbar);
+    const modalRef = useRef();
+
+    const showNavbar = () => {
+            
+        setNavbar(!navbar)
+    }
+
+
+    const handleClick = () => {
+        console.log('To');
+    }
+
+console.log(navbar);
     return (
         <Header color={color}>
-            <Header.content>
+            <Header.content >
                 <Header.Menu>
                         <Open to="#" onClick={showNavbar} navbar={navbar}  />
                     <Header.Nav navbar={navbar}>
@@ -22,7 +32,7 @@ export const Navbar = ({ color }) => {
                             {Sidebar.map((item,index) =>{
                                 return(
                                     <Header.Space key={index}>
-                                        <Subnav item={item} />
+                                            <Subnav item={item}></Subnav>
                                     </Header.Space>
                                 );
                             })}

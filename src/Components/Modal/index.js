@@ -129,7 +129,9 @@ Modal.Photo = styled.div`
     height: 100px;
     border-radius: 10px;
 
-    background-color: #ccc;
+    background-image: url(${({ img }) => img ? img : ''});
+    background-color: ${({ img }) => img ? '' : '#ccc'};
+    background-size: 100% 100%;
 `;
 
 Modal.Name = styled.div`

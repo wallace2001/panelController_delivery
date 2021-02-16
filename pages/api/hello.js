@@ -135,3 +135,36 @@ export const tableApi = [
   table: "Estrelas",
   },
 ]
+
+export const contactApiTelefone = [
+  {
+    id: 0,
+    number: "(61)99178-6805",
+  },
+  {
+    id: 1,
+    number: "(61)99178-6805",
+  },
+  {
+    id: 2,
+    number: "(61)99178-6805",
+  },
+]
+
+export const contactApiWhats = [
+  {
+    id: 0,
+    number: "(61)99178-6805",
+  },
+  {
+    id: 1,
+    number: "(61)99178-6805",
+  },
+]
+
+export const contactApiIfood = [
+  {
+    id: 0,
+    number: "https://ifood/incrivel/inpout",
+  },
+]

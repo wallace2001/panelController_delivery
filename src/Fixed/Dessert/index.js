@@ -4,6 +4,7 @@ import { BiPlus } from 'react-icons/bi';
 import { falseApiCandy } from '../../../pages/api/hello';
 
 export const Dessert = ({ 
+    scroll,
     idProduct,
     setIdProduct,
     modal, 
@@ -23,6 +24,12 @@ export const Dessert = ({
     const Api = falseApiCandy;
 
     const showModal = () => setModal(!modal);
+    const handleEdit = (e) =>{
+        setEdit(!edit);
+        const id = e.target.id;
+
+        setIdProduct(Api[id]);
+    }
 
     const handleClick = (e) => {
         setDelet(!delet);
@@ -35,7 +42,7 @@ export const Dessert = ({
         setIdProduct(Api[e.target.id]);
     }
     return (
-        <Div col={modal}>
+        <Div col={modal} id={scroll[0].path}>
             <Div.Content>
                 <Div.BoxProduct>
                 <Div.BoxAdd
@@ -63,7 +70,7 @@ export const Dessert = ({
                                 <p>{item.description}</p>
                                 <button className="price">{item.price}</button>
                                 <button className="delete" id={index} onClick={handleClick}>Excluir</button>
-                                <button className="edit" onClick={() => setEdit(!edit)}>Editar</button>
+                                <button className="edit" id={index} onClick={handleEdit}>Editar</button>
                             </Div.Product>
                         );
                     })}

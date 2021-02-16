@@ -60,6 +60,13 @@ Contain.Wrap = styled.div`
 
     flex-direction: column;
 
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
     h2{
         display: none;
     }

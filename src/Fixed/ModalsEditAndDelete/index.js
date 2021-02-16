@@ -9,6 +9,8 @@ export const ModalsEditAndDelete = ({
     edit,
     setEdit, 
     setDelet, 
+    contactAdd,
+    setContactAdd,
     addContact, 
     setAddContact, 
     isAbout, 
@@ -46,6 +48,7 @@ export const ModalsEditAndDelete = ({
         }
 
 
+
     return (
         <Modals edit={edit} delet={delet} addContact={addContact} ref={modalRef} onClick={CloseModal}>
             <Modals.Wrapper>
@@ -67,11 +70,11 @@ export const ModalsEditAndDelete = ({
                         {delet ? (
                         <>
                             {isContact ? (
-                                <>
+                                <Modals.Contact>
                                     <h3>Tem certeza que deseja deletar ?</h3>
                                     <button className="delete">Sim, tenho!</button>
                                     <button className="nodelete" onClick={handleClick}>Não</button>
-                                </>
+                                </Modals.Contact>
                             ): isHamburguer ? (
                                 <Modals.Ham>
                                     <h3>Deletar Hamburguer</h3>
@@ -104,11 +107,13 @@ export const ModalsEditAndDelete = ({
                     ): edit ? (
                         <>
                             {isContact ? (
-                                <>
-                                    <h3>Editar em contato</h3>
-                                    <label>Número</label>
+                                <Modals.ContactEdit>
+                                    <h3>Editar contato</h3>
+                                    <label>Atualizar número</label>
+                                    <h5>Número a ser editado: {contactAdd.number}</h5>
                                     <input type="text" placeholder="Exemplo: (61)99178-6805" />
-                                </>
+                                    <button>Atualizar</button>
+                                </Modals.ContactEdit>
                             ): (
                                 <Modals.About>
                                     <h3>Editar</h3>
@@ -125,9 +130,12 @@ export const ModalsEditAndDelete = ({
                             )}
                         </>
                     ) : addContact ? (
-                        <>
+                        <Modals.ContactAdd>
                             <h3>Adicionar Contato</h3>
-                        </>
+                            <label>Adicionar novo contato</label>
+                            <input type="text" placeholder="Exemplo (61)99178-6805" />
+                            <button>Adicionar</button>
+                        </Modals.ContactAdd>
                     ) : null}
                     </Modals.Wrap>
                 </Modals.Content>
