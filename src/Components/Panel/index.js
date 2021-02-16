@@ -7,6 +7,10 @@ import { Link } from 'react-scroll';
 export const Panel = styled.div`
     width: 100%;
     height: 100%;
+
+    @media screen and (max-width: 1100px){
+        margin-top: 50px;
+    }
 `;
 
 Panel.Bg = styled.div`
