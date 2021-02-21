@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Panel } from '../../Components/Panel';
 import db from '../../../pages/api/config.json';
 import { falseApiEvaluation } from '../../../pages/api/hello';
+import { connection } from '../../../db';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 import { FaHamburger, FaCandyCane } from 'react-icons/fa';
 import { BiMoney, BiPhone } from 'react-icons/bi';
@@ -18,11 +20,12 @@ import { Promo } from '../Promo';
 
 import { Modals } from '../Modal';
 import { ModalsEditAndDelete } from '../ModalsEditAndDelete';
+import teste from '../../../pages/index';
 
 
 
 
-export const PanelConfig = ({ navbar, setNavbar }) => {
+export const PanelConfig = ({ navbar, setNavbar, tel, ifood, whats, promo,dessert, evaluation, hamburguer, handleSend }) => {
     const [actived, setActived] = useState();
     const [modal, setModal] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -35,13 +38,14 @@ export const PanelConfig = ({ navbar, setNavbar }) => {
     const [isHamburguer, setIsHamburguer] = useState(false);
     const [isDessert, setIsDessert] = useState(false);
     const [idProduct, setIdProduct] = useState(undefined);
+    const [deleteProduct, setDeleteProduct] = useState();
     const [contactAdd, setContactAdd] = useState(undefined);
     const [scroll, setScroll] = useState(undefined);
+    const [infoContact, setInfoContact] = useState();
+    const [route, setRoute] = useState();
+
     const tamEval = falseApiEvaluation.length;
 
-    // edit === modal ? setModal(!modal) : '';
-
-    console.log(addContact);
 
     const SidebarData = [
         {
@@ -51,7 +55,7 @@ export const PanelConfig = ({ navbar, setNavbar }) => {
             icon: <FaHamburger />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Hamburguer scroll={scroll} idProduct={idProduct} setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
+            component: <Hamburguer setRoute={setRoute} deleteProduct={deleteProduct} setDeleteProduct={setDeleteProduct} hamburguer={hamburguer} scroll={scroll} idProduct={idProduct} setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
             current: false,
         },
         
@@ -62,7 +66,7 @@ export const PanelConfig = ({ navbar, setNavbar }) => {
             icon: <FaCandyCane />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Dessert scroll={scroll} setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
+            component: <Dessert setRoute={setRoute} setDeleteProduct={setDeleteProduct} dessert={dessert} scroll={scroll} setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
             current: false,
         },
     
@@ -73,7 +77,7 @@ export const PanelConfig = ({ navbar, setNavbar }) => {
             icon: <BiMoney />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Promo scroll={scroll} setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer}  delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
+            component: <Promo setRoute={setRoute} setDeleteProduct={setDeleteProduct} promo={promo} scroll={scroll} setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer}  delet={delet} setDelet={setDelet} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} delet={delet} setDelet={setDelet} />,
             current: false,
         },
     
@@ -84,7 +88,7 @@ export const PanelConfig = ({ navbar, setNavbar }) => {
             icon: <AiOutlineStar />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Evaluation scroll={scroll} />,
+            component: <Evaluation evaluation={evaluation} scroll={scroll} />,
             current: true,
         },
     
@@ -95,7 +99,7 @@ export const PanelConfig = ({ navbar, setNavbar }) => {
             icon: <BiPhone />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <Contact scroll={scroll} contactAdd={contactAdd} setContactAdd={setContactAdd} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} addContact={addContact} setAddContact={setAddContact} delet={delet} setDelet={setDelet} edit={edit2} setEdit={setEdit2} />,
+            component: <Contact route={route} setInfoContact={setInfoContact} setIdProduct={setIdProduct} setRoute={setRoute} setDeleteProduct={setDeleteProduct} tel={tel} ifood={ifood} whats={whats} scroll={scroll} contactAdd={contactAdd} setContactAdd={setContactAdd} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} addContact={addContact} setAddContact={setAddContact} delet={delet} setDelet={setDelet} edit={edit2} setEdit={setEdit2} />,
             current: false,
         },
     
@@ -131,8 +135,8 @@ export const PanelConfig = ({ navbar, setNavbar }) => {
                     modal={modal ? 1 : 0}
                     addContact={addContact ? 1 : 0}
                 >
-                    <ModalsEditAndDelete contactAdd={contactAdd} idProduct={idProduct} setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} isHamburguer={isHamburguer} isPromo={isPromo} isDessert={isDessert} isContact={isContact} isAbout={isAbout} addContact={addContact} setAddContact={setAddContact} delet={delet} edit={edit2} setDelet={setDelet} setEdit={setEdit2} />
-                    <Modals idProduct={idProduct} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} />
+                    <ModalsEditAndDelete infoContact={infoContact} tel={tel} ifood={ifood} whats={whats} route={route} handleSend={handleSend} deleteProduct={deleteProduct} contactAdd={contactAdd} idProduct={idProduct} setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} isHamburguer={isHamburguer} isPromo={isPromo} isDessert={isDessert} isContact={isContact} isAbout={isAbout} addContact={addContact} setAddContact={setAddContact} delet={delet} edit={edit2} setDelet={setDelet} setEdit={setEdit2} />
+                    <Modals infoContact={infoContact} route={route} deleteProduct={deleteProduct} handleSend={handleSend} idProduct={idProduct} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} />
                     <Panel.Content>
                         <Panel.Box info={true}>
                         <Panel.Control info={true}>

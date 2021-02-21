@@ -3,7 +3,7 @@ import { Eval } from '../../Components/Evaluation';
 import { falseApiEvaluation } from '../../../pages/api/hello';
 import { tableApi } from '../../../pages/api/hello';
 
-export const Evaluation = ({ scroll }) => {
+export const Evaluation = ({ scroll, evaluation }) => {
     const Api = falseApiEvaluation;
     const tableA = tableApi;
     return (
@@ -20,7 +20,7 @@ export const Evaluation = ({ scroll }) => {
                     </tr>
                     </thead>
                     <tbody>
-                        {Api.map((item, index) =>{
+                        {!evaluation ? '' : evaluation.map((item, index) =>{
                             return(
                                 <tr key={index}>
                                     <td >{item.name}</td>

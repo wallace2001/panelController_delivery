@@ -6,9 +6,11 @@ import { falseApiPromo } from '../../../pages/api/hello';
 export const Promo = ({ 
     scroll,
     setIdProduct,
+    setDeleteProduct,
     modal, 
     setModal, 
-    edit, 
+    edit,
+    promo,
     setEdit, 
     setDelet, 
     delet,
@@ -16,12 +18,14 @@ export const Promo = ({
     setIsDessert,
     setIsHamburguer,
     setIsAbout,
+    setRoute,
     setIsContact }) => {
     const [hover, setHover] = useState();
 
     const Api = falseApiPromo;
 
         const handleClick = (e) => {
+            const id = e.target.id;
             setDelet(!delet)
             setIsDessert(false); 
             setIsPromo(true);
@@ -29,18 +33,24 @@ export const Promo = ({
             setIsAbout(false);
             setIsContact(false);
 
-            setIdProduct(Api[e.target.id])
+            setIdProduct(promo[id]);
+            setDeleteProduct(promo[id]._id);
+            setRoute(`promo/promodelete/`);
         }
 
         const handleEdit = (e) =>{
             setEdit(!edit);
             const id = e.target.id;
-    
-            setIdProduct(Api[id]);
+            setIdProduct(promo[id]);
+            setDeleteProduct(promo[id]._id);
+            setRoute(`promo/promopatch/`);
         }
     
 
-    const showModal = () => setModal(!modal);
+    const showModal = () => {
+        setModal(!modal);
+        setRoute('/promo/promopost');
+    };
     return (
         <Div col={modal} id={scroll[2].path} >
             <Div.Content>
@@ -61,10 +71,10 @@ export const Promo = ({
                         />
                 </Div.BoxAdd>
                 <Div.ContentProduct>
-                    {Api.map((item, index) => {
+                    {!promo ? '' : promo.map((item, index) => {
                         return(
                             <Div.Product key={index}>
-                                <img src={item.photo} alt={item.name} />
+                                <img src={item.url} alt={item.name} />
                                 <h2>{item.name}</h2>
                                 <p>{item.description}</p>
                                 <button className="price">{item.price}</button>

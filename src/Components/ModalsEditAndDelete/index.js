@@ -35,7 +35,7 @@ Modals.Content = styled.div`
     position: fixed;
 
 
-    background-color: ${({ theme }) => theme.colors.colorContent};
+    background-color: ${({ theme, type, type1 }) => type ? 'rgba(255, 0, 21)' : type1 ? 'rgba(88,145,237)' : theme.colors.colorContent};
 
     @media screen and (max-width: 900px){
         width: 50%;
@@ -113,13 +113,16 @@ Modals.Ham = styled.div`
     align-items: center;
     flex-direction: column;
 
+    background-color: ${({ type }) => type ? 'rgba(255, 0, 21, .8)' : ''};
+
     img{
         width: 200px;
         height: 150px;
+        object-fit: contain;
     }
 
     h2{
-        color: ${({ theme }) => theme.colors.primary};
+        color: ${({ theme, type }) => type ? theme.colors.secundary : theme.colors.primary};
         text-align: center;
     }
     p{
@@ -183,6 +186,7 @@ Modals.Dessert = styled.div`
     img{
         width: 200px;
         height: 150px;
+        object-fit: contain;
     }
 
     h2{
@@ -250,10 +254,11 @@ Modals.Promo = styled.div`
     img{
         width: 200px;
         height: 150px;
+        object-fit: contain;
     }
 
     h2{
-        color: ${({ theme }) => theme.colors.primary};
+        color: ${({ theme, type }) => type ? theme.colors.secundary : theme.colors.primary};
         text-align: center;
     }
     p{
@@ -394,7 +399,7 @@ Modals.About = styled.div`
 
 `;
 
-Modals.ContactEdit = styled.div`
+Modals.ContactEdit = styled.form`
     width: 100%;
     height: 100%;
 
@@ -447,6 +452,11 @@ Modals.Contact = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    h2{
+        text-align: center;
+        color: ${({ type, theme }) => type ?  theme.colors.secundary : theme.colors.primary};
+    }
 
     input{
         width: 70%;
@@ -506,7 +516,7 @@ Modals.Contact = styled.div`
 
 `;
 
-Modals.ContactAdd = styled.div`
+Modals.ContactAdd = styled.form`
     width: 100%;
     height: 100%;
 
@@ -514,6 +524,11 @@ Modals.ContactAdd = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    h3{
+        text-align: center;
+        color: ${({ type, theme }) => type ? theme.colors.secundary : theme.colors.primary}
+    }
 
     input{
         width: 70%;

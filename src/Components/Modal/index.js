@@ -1,8 +1,22 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const dragActive = css`
+    border-color: #2fc461;
+`;
+
+const dragReject = css`
+    border-color: #e57878;
+`;
+
+const messageColor = {
+    default: '#999',
+    error: '#e57878',
+    success: '#2fc461'
+}
 
 export const Modal = styled.div`
     width: 100%;
-    height: 100%;
+    height: calc(100% + 60px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,28 +24,13 @@ export const Modal = styled.div`
 
 
     transition: 0.2s ease;
-    /* margin-bottom: 50%;
-
-    @media screen and (max-width: 1600px){
-        margin-left: 100px;
-        margin-bottom: 120%;
-    }
-
-    @media screen and (max-width: 1400px){
-        margin-left: 400px;
-        margin-top: 50px;
-    }
-
-    @media screen and (max-width: 1100px){
-        margin-left: 80px;
-        margin-top: 100px;
-    }
-
-    @media screen and (max-width: 700px){
-        margin-left: 50px;
-    } */
 
     position: absolute;
+
+    @media screen and (max-height: 800px){
+        padding-top: 10%;
+        padding-bottom: 10%;
+    }
 
 
 `;
@@ -61,8 +60,7 @@ Modal.Close = styled.div`
 `;
 
 Modal.Box = styled.div`
-
-    /* height: 600px; */
+    height: auto;
     border-radius: 10px;
     position: fixed;
 
@@ -71,25 +69,7 @@ Modal.Box = styled.div`
     //margin-top: 50%;
     padding: 0% 3% 3% 3%;
 
-    /* @media screen and (max-width: 1400px){
-        margin-top: 70%;
-    }
 
-    @media screen and (max-width: 1100px){
-        margin-top: 90%;
-    }
-
-    @media screen and (max-width: 900px){
-
-    }
-
-    @media screen and (max-width: 800px){
-        margin-top: 120%;
-    }
-
-    @media screen and (max-width: 700px){
-        margin-top: 180%;
-    } */
 `;
 
 Modal.Form = styled.form`
@@ -104,6 +84,7 @@ Modal.Form = styled.form`
     padding: 3%;
 
     h3{
+        display: ${({ error }) => error ? 'none' : 'block'};
         color: ${({ theme }) => theme.colors.primary};
         margin-bottom: 20px;
     }
@@ -113,15 +94,40 @@ Modal.Image = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 
     margin-bottom: 20px;
 
-    label{
-        color: ${({ theme }) => theme.colors.primary};
-        margin-bottom: 10px;
+    .circular{
+        margin-left: 10px;
     }
 
+`;
+
+Modal.DropsContainer = styled.div.attrs({ 
+    className: "dropzone"
+ })`
+    width: 300px;
+    height: 50px;
+    border: 1px dashed #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+
+    transition: height 0.2s ease;
+
+    ${({isDragActive}) => isDragActive ? dragActive : '#ddd'};
+    ${({isDragReject}) => isDragReject ? dragReject : '#ddd'};
+
+    h5{
+        color: black;
+        text-align: center;
+    }
+`;
+
+Modal.UploadMessage = styled.p`
+    display: flex;
+    color: ${({ type }) => messageColor[type]};
+    justify-content: center;
+    align-items: center;
 `;
 
 Modal.Photo = styled.div`

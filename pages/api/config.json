@@ -19,7 +19,10 @@
             "colorButtonPrice": "#D3A500",
             "colorButtonDelete": "#FF0000",
             "colorButtonEdit": "#00A1D3",
-            "backgroundImgBlack": "rgba(0,0,0,.3)"
+            "backgroundImgBlack": "rgba(0,0,0,.3)",
+
+
+            "loginInvalid": "#ff1100"
         }
     }
 }

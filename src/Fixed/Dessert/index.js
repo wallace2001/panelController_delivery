@@ -17,21 +17,31 @@ export const Dessert = ({
     setIsDessert,
     setIsHamburguer,
     setIsAbout,
+    dessert,
+    setRoute,
+    setDeleteProduct,
     setIsContact
 }) => {
     const [hover, setHover] = useState();
 
     const Api = falseApiCandy;
 
-    const showModal = () => setModal(!modal);
+    const showModal = () => {
+        setModal(!modal);
+        setRoute('dessert/dessertpost');
+    };
+
     const handleEdit = (e) =>{
         setEdit(!edit);
         const id = e.target.id;
 
-        setIdProduct(Api[id]);
+        setIdProduct(dessert[id]);
+        setDeleteProduct(dessert[id]._id);
+        setRoute('dessert/dessertpatch/');
     }
 
     const handleClick = (e) => {
+        const id = e.target.id;
         setDelet(!delet);
         setIsDessert(true); 
         setIsPromo(false);
@@ -39,7 +49,9 @@ export const Dessert = ({
         setIsAbout(false);
         setIsContact(false);
 
-        setIdProduct(Api[e.target.id]);
+        setIdProduct(dessert[id]);
+        setDeleteProduct(dessert[id]._id);
+        setRoute('dessert/dessertdelete/');
     }
     return (
         <Div col={modal} id={scroll[0].path}>
@@ -62,10 +74,10 @@ export const Dessert = ({
                         />
                 </Div.BoxAdd>
                 <Div.ContentProduct>
-                    {Api.map((item, index) => {
+                    {!dessert ? '' : dessert.map((item, index) => {
                         return(
                             <Div.Product key={index}>
-                                <img src={item.photo} alt={item.name} />
+                                <img src={item.url} alt={item.name} />
                                 <h2>{item.name}</h2>
                                 <p>{item.description}</p>
                                 <button className="price">{item.price}</button>

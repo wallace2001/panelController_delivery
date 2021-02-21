@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Div } from '../../Components/Hamburguer';
 import { BiPlus } from 'react-icons/bi';
 import { falseApi } from '../../../pages/api/hello';
+import axios from 'axios';
 
 export const Hamburguer = ({ 
     scroll,
+    setDeleteProduct,
+    deleteProduct,
     setIdProduct,
     modal, 
     setModal, 
@@ -16,6 +19,8 @@ export const Hamburguer = ({
     setIsDessert,
     setIsHamburguer,
     setIsAbout,
+    hamburguer,
+    setRoute,
     setIsContact }) => {
     const [hover, setHover] = useState();
 
@@ -30,17 +35,24 @@ export const Hamburguer = ({
         setIsAbout(false);
         setIsContact(false);
 
-        setIdProduct(Api[id]);
+        setIdProduct(hamburguer[id]);
+        setDeleteProduct(hamburguer[id]._id);
+        setRoute(`description/descriptiondelete/`);
     }
 
     const handleEdit = (e) =>{
         setEdit(!edit);
         const id = e.target.id;
-
-        setIdProduct(Api[id]);
+        setIdProduct(hamburguer[id]);
+        setDeleteProduct(hamburguer[id]._id);
+        setRoute(`description/descriptionpatch/`);
     }
 
-    const showModal = () => setModal(!modal);
+
+    const showModal = () => {
+        setModal(!modal);
+        setRoute('/description/descriptionpost');
+    };
     return (
         <Div col={modal} id={scroll[0].path}>
             <Div.Content>
@@ -61,13 +73,13 @@ export const Hamburguer = ({
                         />
                 </Div.BoxAdd>
                 <Div.ContentProduct>
-                    {Api.map((item, index) => {
+                    {!hamburguer ? '' : hamburguer.map((item, index) => {
                         return(
                             <Div.Product key={index}>
-                                <img src={item.photo} alt={item.name} />
+                                <img src={item.url} alt={item.name} />
                                 <h2>{item.name}</h2>
                                 <p>{item.description}</p>
-                                <button className="price">{item.price}</button>
+                                <button className="price">R${item.price}</button>
                                 <button className="delete" id={index} onClick={handleClick}>Excluir</button>
                                 <button className="edit" id={index} onClick={handleEdit}>Editar</button>
                             </Div.Product>

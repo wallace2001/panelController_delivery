@@ -11,6 +11,10 @@ export const Panel = styled.div`
     @media screen and (max-width: 1100px){
         margin-top: 50px;
     }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 Panel.Bg = styled.div`

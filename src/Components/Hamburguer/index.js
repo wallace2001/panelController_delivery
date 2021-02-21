@@ -54,6 +54,7 @@ Div.BoxAdd = styled.div`
     background-color: #ccc;
 
     margin-top: 50px;
+    margin-bottom: 50px;
 
     cursor: pointer;
     transition: 0.2s ease;
@@ -95,6 +96,7 @@ Div.Product = styled.div`
         height: 129px;
 
         border-radius: 10px;
+        object-fit: cover;
     }
 
     h2{
