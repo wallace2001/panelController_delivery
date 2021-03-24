@@ -9,21 +9,39 @@ export const About = ({
     setIsPromo ,
     setIsDessert,
     setIsHamburguer,
+    about,
+    setInfoContact,
+    setIdProduct,
+    setRoute,
+    setDeleteProduct,
     setIsContact  }) => {
-        const handleClick = () => {
+        const handleClick = (e) => {
+            const id = e.target.id;
             setEdit(!edit)
             setIsDessert(false); 
             setIsPromo(false);
             setIsHamburguer(false);
             setIsAbout(true);
             setIsContact(false);
+
+            setIdProduct(about[id]);
+            setDeleteProduct(about[id]._id);
+            setRoute('about/sendupdate/');
+            console.log(about[id]._id);
         }
+
     return (
         <Contain id={scroll[5].path}>
             <Contain.Content>
-                <h2>Sobre nós</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mauris purus, fringilla ultricies arcu vel, efficitur volutpat diam. Nullam ultrices urna et pharetra finibus. Phasellus vehicula dictum nunc non tincidunt. Donec vestibulum mi ut nulla faucibus, a semper urna tempor. Curabitur ultricies urna est, ut aliquam erat egestas pulvinar. Sed vehicula porta nibh tincidunt tincidunt. Maecenas cursus ex rhoncus lectus egestas egestas. Donec consequat posuere nisi et convallis. Nulla id consectetur erat. Nullam ante quam, consectetur eget venenatis sit amet, venenatis ac eros. Donec ac tellus cursus, condimentum odio vel, maximus tellus. Donec vestibulum rutrum luctus. Aliquam ut iaculis eros, condimentum auctor augue.</p>
-                <button className="edit" onClick={handleClick}>Editar</button>
+                {!about ? '' : about.map((item, index) => {
+                    return(
+                        <div key={index}>
+                            <h2>{item.title}</h2>
+                            <p>{item.description}</p>
+                        </div>
+                    );
+                })}
+                <button id='0' className="edit" onClick={handleClick}>Editar</button>
             </Contain.Content>
         </Contain>
     )

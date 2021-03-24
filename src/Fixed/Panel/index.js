@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Panel } from '../../Components/Panel';
 import db from '../../../pages/api/config.json';
-import { falseApiEvaluation } from '../../../pages/api/hello';
-import { connection } from '../../../db';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 
 import { FaHamburger, FaCandyCane } from 'react-icons/fa';
 import { BiMoney, BiPhone } from 'react-icons/bi';
@@ -20,12 +17,13 @@ import { Promo } from '../Promo';
 
 import { Modals } from '../Modal';
 import { ModalsEditAndDelete } from '../ModalsEditAndDelete';
-import teste from '../../../pages/index';
+import api from '../../../db';
 
 
 
 
-export const PanelConfig = ({ navbar, setNavbar, tel, ifood, whats, promo,dessert, evaluation, hamburguer, handleSend }) => {
+
+export const PanelConfig = ({ navbar, setNavbar, tamEval, about, tel, ifood, whats, promo,dessert, evaluation, hamburguer, handleSend }) => {
     const [actived, setActived] = useState();
     const [modal, setModal] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -43,8 +41,9 @@ export const PanelConfig = ({ navbar, setNavbar, tel, ifood, whats, promo,desser
     const [scroll, setScroll] = useState(undefined);
     const [infoContact, setInfoContact] = useState();
     const [route, setRoute] = useState();
+    const [logado, setLogado] = useState(false);
 
-    const tamEval = falseApiEvaluation.length;
+    const router = useRouter();
 
 
     const SidebarData = [
@@ -110,7 +109,7 @@ export const PanelConfig = ({ navbar, setNavbar, tel, ifood, whats, promo,desser
             icon: <AiOutlineTeam />,
             iconU: <RiArrowUpSLine size={30} />,
             iconD: <RiArrowDownSLine size={30}/>,
-            component: <About scroll={scroll} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} edit={edit2} setEdit={setEdit2} />,
+            component: <About route={route} setInfoContact={setInfoContact} setIdProduct={setIdProduct} setRoute={setRoute} setDeleteProduct={setDeleteProduct} about={about} scroll={scroll} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} edit={edit2} setEdit={setEdit2} />,
             current: false,
         },
     
@@ -120,122 +119,147 @@ export const PanelConfig = ({ navbar, setNavbar, tel, ifood, whats, promo,desser
     useEffect(() => {
         setScroll(info);
     }, []);
+
+    useEffect(() => {
+        const getToken = async() => {
+            const token = await localStorage.getItem('oauth_token');
+            const totalToken = 'Bearer '.concat(token);
+            const logad = await localStorage.getItem('logado') === 'true' ? true : false;
+
+            api.get('/me', { headers: { Authorization: totalToken } })
+            .then(res => {
+                if(!res.data.error){
+                    localStorage.setItem('oauth_token', token);
+                    setLogado(logad);
+                }else{
+                    setLogado(logad);
+                    router.push('/');
+                }
+
+            });
+        }
+
+        getToken();
+    }, []);
     const img = db.bgMenu;
+
+    console.log(evaluation);
+
 
     return (
         <Panel onClick={() => setNavbar(false)}>
-            <Panel.Bg backgroundImg={img}>
-                <Panel.Black 
-                    edit={edit ? 1 : 0}
-                    about={isAbout ? 1 : 0}
-                    hamb={isHamburguer ? 1 : 0}
-                    contact={isContact ? 1 : 0}
-                    dessert={isDessert ? 1 : 0}
-                    promo={isPromo ? 1 : 0}
-                    modal={modal ? 1 : 0}
-                    addContact={addContact ? 1 : 0}
-                >
-                    <ModalsEditAndDelete infoContact={infoContact} tel={tel} ifood={ifood} whats={whats} route={route} handleSend={handleSend} deleteProduct={deleteProduct} contactAdd={contactAdd} idProduct={idProduct} setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} isHamburguer={isHamburguer} isPromo={isPromo} isDessert={isDessert} isContact={isContact} isAbout={isAbout} addContact={addContact} setAddContact={setAddContact} delet={delet} edit={edit2} setDelet={setDelet} setEdit={setEdit2} />
-                    <Modals infoContact={infoContact} route={route} deleteProduct={deleteProduct} handleSend={handleSend} idProduct={idProduct} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} />
-                    <Panel.Content>
-                        <Panel.Box info={true}>
-                        <Panel.Control info={true}>
-                            <Panel.Form>
-                            {info.map((item,index) => {
+        <Panel.Bg backgroundImg={img}>
+            <Panel.Black 
+                edit={edit ? 1 : 0}
+                about={isAbout ? 1 : 0}
+                hamb={isHamburguer ? 1 : 0}
+                contact={isContact ? 1 : 0}
+                dessert={isDessert ? 1 : 0}
+                promo={isPromo ? 1 : 0}
+                modal={modal ? 1 : 0}
+                addContact={addContact ? 1 : 0}
+            >
+                <ModalsEditAndDelete about={about} infoContact={infoContact} tel={tel} ifood={ifood} whats={whats} route={route} handleSend={handleSend} deleteProduct={deleteProduct} contactAdd={contactAdd} idProduct={idProduct} setIdProduct={setIdProduct} setIsDessert={setIsDessert} setIsPromo={setIsPromo} setIsAbout={setIsAbout} setIsContact={setIsContact} setIsHamburguer={setIsHamburguer} isHamburguer={isHamburguer} isPromo={isPromo} isDessert={isDessert} isContact={isContact} isAbout={isAbout} addContact={addContact} setAddContact={setAddContact} delet={delet} edit={edit2} setDelet={setDelet} setEdit={setEdit2} />
+                <Modals infoContact={infoContact} route={route} deleteProduct={deleteProduct} handleSend={handleSend} idProduct={idProduct} modal={modal} setModal={setModal} edit={edit} setEdit={setEdit} />
+                <Panel.Content>
+                    <Panel.Box info={true}>
+                    <Panel.Control info={true}>
+                        <Panel.Form>
+                        {info.map((item,index) => {
 
-                                const isSelect = actived === index;  
-                                        
-                                return(
-                                        <label key={index}>
-                                            <input 
-                                                type="radio" 
-                                                name="name"
-                                                onChange={() => setActived(index)}
-                                                data_selected={isSelect ? 1 : 0}
-                                                />
-                                            {/* <Panel.Div data_selected={isSelect}>{item.title}</Panel.Div> */}
-                                            <Panel.Title 
-                                                // key={index}
-                                                data_selected={isSelect ? 1 : 0}
-                                                p={true} 
-                                                info={true} 
-                                                edit={edit ? 1 : 0}
-                                                about={isAbout ? 1 : 0}
-                                                hamb={isHamburguer ? 1 : 0}
-                                                contact={isContact ? 1 : 0}
-                                                dessert={isDessert ? 1 : 0}
-                                                promo={isPromo ? 1 : 0}
-                                                modal={modal ? 1 : 0}
-                                                edit2={edit2}
-                                                addContact={addContact ? 1 : 0}
-                                                bottom={item.bottom}
-                                                >
-                                            <Panel.LinkScroll
-                                                        to={item.path}
-                                                        activeClass="active"
-                                                        smooth={true}
-                                                        duration={500} 
-                                                        spy={true} 
-                                                        exact='true' 
-                                                        offset={-80}>{item.title}</Panel.LinkScroll>
-                                                    {item.current ? (<div active={isSelect ? 1 : 0}><h3>{tamEval}</h3></div>) : ''}
-                                            </Panel.Title>
-                                        </label>
-                                );
-                            })}
-                            </Panel.Form>
-                            </Panel.Control>
-                        </Panel.Box>
-
-                        <Panel.Box info={false}>
-                            {info.map((item,index) => {
-                                const current = index + 1;
-                                const [active, setActive] = useState(false);
-                                const [icon, setIcon] = useState(false);
-                                return(
-                                    <Panel.Control 
-                                    key={index} 
-                                    id={item.path} 
-                                    info={false} 
-                                    model={active}
-                                    modal={modal ? 1 : 0}
-                                    edit={edit ? 1 : 0}
-                                    about={isAbout ? 1 : 0}
-                                    hamb={isHamburguer ? 1 : 0}
-                                    contact={isContact ? 1 : 0}
-                                    dessert={isDessert ? 1 : 0}
-                                    edit2={edit2}
-                                    addContact={addContact ? 1 : 0}
-                                    promo={isPromo ? 1 : 0} >
-                                        <Panel.Title
-                                            onClick={() => {current && setActive(active) ? setActive(!active) : setActive(!active); setIcon(!icon); }}
-                                            active={true}
-                                            p={true}
-                                            icon={true}
+                            const isSelect = actived === index;  
+                                    
+                            return(
+                                    <label key={index}>
+                                        <input 
+                                            type="radio" 
+                                            name="name"
+                                            onChange={() => setActived(index)}
+                                            data_selected={isSelect ? 1 : 0}
+                                            />
+                                        {/* <Panel.Div data_selected={isSelect}>{item.title}</Panel.Div> */}
+                                        <Panel.Title 
+                                            // key={index}
+                                            data_selected={isSelect ? 1 : 0}
+                                            p={true} 
+                                            info={true} 
                                             edit={edit ? 1 : 0}
-                                            model={active}
-                                            modal={modal ? 1 : 0}
                                             about={isAbout ? 1 : 0}
                                             hamb={isHamburguer ? 1 : 0}
                                             contact={isContact ? 1 : 0}
-                                            edit2={edit2}
-                                            addContact={addContact ? 1 : 0}
                                             dessert={isDessert ? 1 : 0}
                                             promo={isPromo ? 1 : 0}
-                                            
+                                            modal={modal ? 1 : 0}
+                                            edit2={edit2}
+                                            addContact={addContact ? 1 : 0}
+                                            bottom={item.bottom}
                                             >
-                                            
-                                            <h4>{item.title}</h4>
-                                                <icon>{item.iconAdd}{icon ? item.iconU : item.iconD}</icon>
-                                            </Panel.Title>
-                                            {active ? item.component: ''}
-                                    </Panel.Control>
-                                );
-                            })}
-                        </Panel.Box>
-                    </Panel.Content>
-                </Panel.Black>
-            </Panel.Bg>
-        </Panel>
+                                        <Panel.LinkScroll
+                                                    to={item.path}
+                                                    activeClass="active"
+                                                    smooth={true}
+                                                    duration={500} 
+                                                    spy={true} 
+                                                    exact='true' 
+                                                    offset={-80}>{item.title}</Panel.LinkScroll>
+                                                {item.current ? (<div active={isSelect ? 1 : 0}><h3>{tamEval}</h3></div>) : ''}
+                                        </Panel.Title>
+                                    </label>
+                            );
+                        })}
+                        </Panel.Form>
+                        </Panel.Control>
+                    </Panel.Box>
+
+                    <Panel.Box info={false}>
+                        {info.map((item,index) => {
+                                const current = index + 1;
+                                const [active, setActive] = useState(false);
+                                const [icon, setIcon] = useState(false);
+                            return(
+                                <Panel.Control 
+                                key={index} 
+                                id={item.path} 
+                                info={false} 
+                                model={active}
+                                modal={modal ? 1 : 0}
+                                edit={edit ? 1 : 0}
+                                about={isAbout ? 1 : 0}
+                                hamb={isHamburguer ? 1 : 0}
+                                contact={isContact ? 1 : 0}
+                                dessert={isDessert ? 1 : 0}
+                                edit2={edit2}
+                                addContact={addContact ? 1 : 0}
+                                promo={isPromo ? 1 : 0} >
+                                    <Panel.Title
+                                        onClick={() => {current && setActive(active) ? setActive(!active) : setActive(!active); setIcon(!icon); }}
+                                        active={true}
+                                        p={true}
+                                        icon={true}
+                                        edit={edit ? 1 : 0}
+                                        model={active}
+                                        modal={modal ? 1 : 0}
+                                        about={isAbout ? 1 : 0}
+                                        hamb={isHamburguer ? 1 : 0}
+                                        contact={isContact ? 1 : 0}
+                                        edit2={edit2}
+                                        addContact={addContact ? 1 : 0}
+                                        dessert={isDessert ? 1 : 0}
+                                        promo={isPromo ? 1 : 0}
+                                        
+                                        >
+                                        
+                                        <h4>{item.title}</h4>
+                                            <icon>{item.iconAdd}{icon ? item.iconU : item.iconD}</icon>
+                                        </Panel.Title>
+                                        {active ? item.component: ''}
+                                </Panel.Control>
+                            );
+                        })}
+                    </Panel.Box>
+                </Panel.Content>
+            </Panel.Black>
+        </Panel.Bg>
+    </Panel> 
     )
 }

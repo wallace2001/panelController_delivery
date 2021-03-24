@@ -28,6 +28,7 @@ export const ModalsEditAndDelete = ({
     tel,
     ifood,
     whats,
+    about,
     infoContact,
     setIsContact }) => {
     
@@ -36,6 +37,9 @@ export const ModalsEditAndDelete = ({
         const [info, setInfo] = useState();
         const [success, setSuccess] = useState();
         const [upd, setUpd] = useState();
+        const [errAbout, setErrAbout] = useState();
+        const [title, setTitle] = useState();
+        const [description, setDescription] = useState();
         // const [info, setInfo] = useState();
 
         console.log(route);
@@ -96,12 +100,27 @@ export const ModalsEditAndDelete = ({
             });
         }
 
+        const updateAbout = (e) => {
+            e.preventDefault();
+
+            api.patch(`${route+deleteProduct}`, {
+                title: title,
+                description: description,
+            }).then(res => {
+                setErrAbout(res.data ? 1 : 0);
+                handleSend();
+            })
+        }
+
+        console.log(route);
+        console.log(deleteProduct);
+
 
     return (
         <Modals edit={edit} delet={delet} addContact={addContact} ref={modalRef} >
             <Modals.Wrapper>
-                <Modals.Content type={error ? 1 : 0} type1={success}>
-                <Modals.Close onClick={() => {setError(false); setSuccess(false); setUpd(false)}}><IoIosCloseCircle 
+                <Modals.Content type={error ? 1 : 0} type1={success} type2={errAbout}>
+                <Modals.Close onClick={() => {setError(false); setSuccess(false); setUpd(false); setErrAbout(false)}}><IoIosCloseCircle 
                 size={30} 
                 color="black" 
                 cursor="pointer" 
@@ -190,18 +209,23 @@ export const ModalsEditAndDelete = ({
                                     <button type="submit">Atualizar</button>
                                 </Modals.ContactEdit>)
                             ): (
+                                errAbout ? (
+                                    <Modals.About>
+                                        <h3 type={errAbout}>Editado com sucesso!</h3>
+                                    </Modals.About>
+                                ) : (
                                 <Modals.About>
                                     <h3>Editar</h3>
-                                    <label>Título</label>
-                                    <input type="text" placeholder="Titulo" />
-                                    <label>Descrição</label>
-                                    <textarea type="text" placeholder="Conteúdo" />
+                                    <label ></label>
+                                    <input type="text" placeholder="Titulo" onChange={(e) => setTitle(e.target.value)} defaultValue={idProduct.title} />
+                                    <label  ></label>
+                                    <textarea type="text" placeholder="Conteúdo" onChange={(e) => setDescription(e.target.value)} defaultValue={idProduct.description} />
 
                                     <div>
-                                    <button className="nodelete">Editar</button>
+                                    <button className="nodelete" onClick={updateAbout}>Editar</button>
                                     <button className="delete" onClick={() => setDelet(!delet)}>Cancelar</button>
                                     </div>
-                                </Modals.About>
+                                </Modals.About> )
                             )}
                         </>
                     ) : addContact ? (

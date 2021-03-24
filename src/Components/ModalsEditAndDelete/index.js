@@ -35,7 +35,7 @@ Modals.Content = styled.div`
     position: fixed;
 
 
-    background-color: ${({ theme, type, type1 }) => type ? 'rgba(255, 0, 21)' : type1 ? 'rgba(88,145,237)' : theme.colors.colorContent};
+    background-color: ${({ theme, type, type1, type2 }) => type ? 'rgba(255, 0, 21)' : type1 ? 'rgba(88,145,237)' : type2 ? 'rgba(88,145,237)' : theme.colors.colorContent};
 
     @media screen and (max-width: 900px){
         width: 50%;
@@ -318,10 +318,16 @@ Modals.About = styled.div`
     justify-content: center;
     flex-direction: column;
 
+    h3{
+        text-align: center;
+        color: ${({ type, theme }) => type ? theme.colors.secundary : 'black' };
+    }
+
     input{
         width: 70%;
         height: 40px;
         text-align: center;
+        margin-bottom: 20px;
 
         outline: none;
 

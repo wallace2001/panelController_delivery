@@ -22,8 +22,6 @@ export const Promo = ({
     setIsContact }) => {
     const [hover, setHover] = useState();
 
-    const Api = falseApiPromo;
-
         const handleClick = (e) => {
             const id = e.target.id;
             setDelet(!delet)

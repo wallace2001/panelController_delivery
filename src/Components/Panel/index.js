@@ -22,6 +22,7 @@ Panel.Bg = styled.div`
     height: 100%;
 
     background-image: url(${({ backgroundImg }) => backgroundImg ? backgroundImg : ''});
+    object-fit: cover;
     background-size: cover;
 `;
 

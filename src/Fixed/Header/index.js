@@ -4,10 +4,14 @@ import { Open } from '../../Components/Navbar/Open';
 import { Close } from '../../Components/Navbar/Close.js';
 import { Subnav } from '../Submenu';
 import { SidebarData } from '../../../pages/api/info';
+import { FiLogOut } from 'react-icons/fi';
+import { useRouter } from 'next/router';
 
 export const Navbar = ({ color, setNavbar, navbar }) => {
     const Sidebar = SidebarData;
     const [scrollNav, setScrollNav] = useState(false);
+    const [name, setName] = useState('');
+    const router = useRouter();
 
     const changeNav = () => {
         if(window.scrollY >= 80){
@@ -28,6 +32,20 @@ export const Navbar = ({ color, setNavbar, navbar }) => {
         setNavbar(!navbar)
     }
 
+    useEffect(() => {
+        const get = async() => {
+            setName(await localStorage.getItem('name'));
+        }
+
+        get();
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('oauth_token');
+        localStorage.removeItem('name');
+        localStorage.setItem('logado', false);
+        router.push('/');
+    }
 
     const handleClick = () => {
         console.log('To');
@@ -57,7 +75,10 @@ console.log(navbar);
                     <h2>RESTAURANTE</h2>
                 </Header.Logo>
 
-                <div></div>
+                <div className="logout">
+                    <h5>{name}</h5>
+                    <label style={{cursor: 'pointer'}} onClick={() => handleLogout()}><FiLogOut size={25}/></label>
+                </div>
             </Header.content>
         </Header>
     )

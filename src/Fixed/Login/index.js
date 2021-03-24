@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Login } from '../../Components/Login';
 import db from '../../../pages/api/config.json';
 import { useRouter } from 'next/router';
-import axios from 'axios';
+import api from '../../../db';
 
-export const LoginBox = () => {
+export const LoginBox = (props) => {
     const [name, setName] = useState('');
     const [pass, setPass] = useState('');
     const [message, setMessage] = useState();
@@ -12,30 +12,43 @@ export const LoginBox = () => {
     const [errorPassword, setErrorPassword] = useState();
     const [me, setMe] = useState();
 
+
     const router = useRouter();
     const img = db.bgMenu;
 
     const isAuthenticated = (token) => {
         const totalToken = 'Bearer '.concat(token);
-        axios.get(`http://localhost:3001/me`, { headers: { Authorization: totalToken } })
+        api.get('/me', { headers: { Authorization: totalToken } })
         .then(res => {
-            setMe(res);
-            res.data.ok ? router.push(`/panel/`) : '';
+            if(!res.data.error){
+                setMe(res);
+                localStorage.setItem('oauth_token', token);
+                localStorage.setItem('logado', true);
+                router.push('/panel');
+                res.data.ok ? setName(res.data.user) :  '';
+                localStorage.setItem('name', res.data.user);
+            }else{
+                localStorage.setItem('logado', false);
+            }
+
         });
     }
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:3001/signin`, {
+        api.post('/signin', {
             email: name,
             password: pass
         })
         .then(res => {
             setMessage(res);
-            setErrorEmail(res ? res.data.message === 'E-mail não encontrado!' ? 1 : 0 : 0);
-            setErrorPassword(res ? res.data.message === 'Senha invalida!' ? 1 : 0 : 0);
-            isAuthenticated(res.data.token);
+            if(!res.data.error){
+                isAuthenticated(res.data.token);
+            }else{
+                setErrorEmail(res ? res.data.error === 'E-mail não encontrado!' ? 1 : 0 : 0);
+                setErrorPassword(res ? res.data.error === 'Senha invalida!' ? 1 : 0 : 0);
+            }
+            
         }
         )
     }
@@ -51,13 +64,13 @@ export const LoginBox = () => {
                         <Login.Input err={errorEmail}>
                             <label>E-mail</label>
                             <input err={errorEmail} type="text" onChange={(e) => {setName(e.target.value); setErrorEmail(0)}} />
-                            {message ? message.data.message === 'E-mail não encontrado!' ? <h6>{message.data.message}</h6> : '' : ''}
+                            {message ? message.data.error === 'E-mail não encontrado!' ? <h6>{message.data.error}</h6> : '' : ''}
                         </Login.Input>
 
                         <Login.Input err={errorPassword}>
                             <label>Senha</label>
                             <input err={errorPassword} type="password" onChange={(e) => {setPass(e.target.value); setErrorPassword(0)}} />
-                            {message ? message.data.message === 'Senha invalida!' ? <h6>{message.data.message}</h6> : '' : ''}
+                            {message ? message.data.error === 'Senha invalida!' ? <h6>{message.data.error}</h6> : '' : ''}
                         </Login.Input>
 
                         <Login.Button><button type="submit" >Entrar</button></Login.Button>
@@ -68,3 +81,6 @@ export const LoginBox = () => {
         </Login>
     )
 }
+
+
+

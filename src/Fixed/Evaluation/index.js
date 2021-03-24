@@ -1,11 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Eval } from '../../Components/Evaluation';
 import { falseApiEvaluation } from '../../../pages/api/hello';
 import { tableApi } from '../../../pages/api/hello';
+import api from '../../../db';
+
+// export const Status = () => {
+//     return(
+//         err ? (
+//             <Eval.Modal>
+//                 <Eval.ModalContent>
+//                 <h2>Apagado com sucesso!</h2>
+//                 </Eval.ModalContent>
+//             </Eval.Modal>
+//         ) : (
+//             <Eval.Modal>
+//                 <Eval.ModalContent>
+//                     <h2>Erro ao apagar informação!</h2>
+//                 </Eval.ModalContent>
+//             </Eval.Modal>
+//         )
+
+//     );
+// }
 
 export const Evaluation = ({ scroll, evaluation }) => {
+    const [err, setErr] = useState();
     const Api = falseApiEvaluation;
     const tableA = tableApi;
+
+    const handleDelete = (e) => {
+        const id = e.target.id;
+        const delet = evaluation[id]._id;
+        console.log(evaluation[id]);
+        api.delete(`evaluation/deleteevaluation/${delet}`)
+        .then(res => {
+            setErr(res.data);
+            if(!res.data.error){
+                alert('Apagado com sucesso!');
+            }else{
+                alert('Erro ao apagar informação!');
+            }
+        });
+    }
+
     return (
         <Eval id={scroll[3].path}>
             <Eval.Content>
@@ -27,6 +64,7 @@ export const Evaluation = ({ scroll, evaluation }) => {
                                     <td>{item.email}</td>
                                     <td>{item.description}</td>
                                     <td>{item.stars}</td>
+                                    <td><button id={index} onClick={handleDelete}>Deletar</button></td>
                                 </tr>
                             );
                         })}

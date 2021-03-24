@@ -16,9 +16,15 @@ Contain.Content = styled.div`
 
     padding: 0px 15% 5% 15%;
 
-    h2, p{
-        color: black;
+    div{
+        h2, p{
+            text-align: center;
+            color: black;
     }
+    }
+
+
+
 
     .edit{
         margin-top: 10px;

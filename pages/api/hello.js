@@ -134,6 +134,9 @@ export const tableApi = [
   {
   table: "Estrelas",
   },
+  {
+    table: "Deletar",
+  }
 ]
 
 export const contactApiTelefone = [

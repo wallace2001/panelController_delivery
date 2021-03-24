@@ -1,15 +1,11 @@
 import React, { useState, useRef } from 'react'
-import { animated, useSpring } from 'react-spring';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { Modal } from '../../Components/Modal';
-import {CircularProgressbar} from 'react-circular-progressbar';
 
 import api from '../../../db';
 import fileSize from 'filesize';
-import { uniqueId, update } from 'lodash';
+import { uniqueId } from 'lodash';
 import Dropzone from 'react-dropzone';
-import axios from 'axios';
-import { urlObjectKeys } from 'next/dist/next-server/lib/utils';
 
 export const Modals = ({ modal, handleSend, route, setModal, deleteProduct, edit, setEdit, idProduct }) => {
 
@@ -106,37 +102,11 @@ export const Modals = ({ modal, handleSend, route, setModal, deleteProduct, edit
             error: false,
             url: null,
         }))
-        console.log(uploadFiles);
 
-        setUpload({upload: uploadFiles});
-        setImage(upload ? upload.upload ? upload.upload[0].file : '' : '');
-
+        setImage(uploadFiles[0].file);
+        setUpload(uploadFiles[0]);
         // uploadFiles.forEach(processUpload);
     };
-
-    const updateFile = (id, data) => {
-        setUpload({ uploadFiles: upload.map(uploadFile => {
-            return id === uploadFile.id ? { ...uploadFile, ...data } : uploadFile
-        }) });
-    }
-
-    // const processUpload = (uploadFile) => {
-    //     const data = new FormData();
-
-    //     data.append('file', uploadFile.file, uploadFile.name);
-
-    //     api.post('description/descriptionpost', data, {
-    //     onUploadProgress: e => {
-    //         const progress = parseInt(Math.round((e.loaded * 100) / e.total));
-
-    //         updateFile(updateFile.id, {
-    //             progress,
-    //         })
-    //     }
-    //     }
-    //     ).then(res => console.log(res));
-    // }
-
 
     const renderDragMessage = (active, reject) => {
         if(!active){
@@ -179,15 +149,8 @@ export const Modals = ({ modal, handleSend, route, setModal, deleteProduct, edit
                                 }}
                             </Dropzone>
                             {/* <input type="file" onChange={testeImage}/> */}
-                            <CircularProgressbar className="circular" styles={{
-                                root: { width: 24 },
-                                path: { stroke: '#2fc461' }
-                            }}
-                            strokeWidth={10}
-                            value={upload}
-                            />
                         </Modal.Image>
-                        <Modal.Photo img={edit ? idProduct.url : upload ? upload.upload ? upload.upload[0].preview : '' : ''} />
+                        <Modal.Photo img={upload.preview} />
                         <Modal.Name>
                             <label>Nome do prato</label>
                             <input type="text" defaultValue={edit ? idProduct.name : ''} onChange={(e) => setName(e.target.value)} />

@@ -69,7 +69,7 @@ export const Contact = ({
             console.log(value);
             setInfoContact(value);
             setAddContact(!addContact);
-            setRoute(value === 'telfone' ? 'contact/contactposttelfone' : value === 'whatsapp' ? 'contact/contactpostwhats' : value === 'ifood' ? "contact/contactpostifood" : '');
+            setRoute(value === 'telefone' ? 'contact/contactposttelfone' : value === 'whatsapp' ? 'contact/contactpostwhats' : value === 'ifood' ? "contact/contactpostifood" : '');
         }
     return (
         <Contain id={scroll[4].path}>
@@ -91,7 +91,7 @@ export const Contact = ({
                         );
                     })}
 
-                    <Contain.Add id="telfone" onClick={handleAdd}><BiPlus id="telfone" onClick={handleAdd} size={30} color="black"/></Contain.Add>
+                    <Contain.Add id="telefone" onClick={handleAdd}><BiPlus id="telefone" onClick={handleAdd} size={30} color="black"/></Contain.Add>
                 </Contain.Wrap>
                 <Contain.Wrap>
                     <h2 >WhatsApp</h2>

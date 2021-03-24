@@ -7,6 +7,22 @@ export const Header = styled.div`
     z-index: 1000;
 
     background-color: ${({ color, scrollNav, theme }) => scrollNav ? theme.colors.panelColorFixed  : color};
+
+    .logout{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        label{
+            margin-left: 20px;
+        }
+
+        @media screen and (max-width: 800px){
+            h5{
+                display: none;
+            }
+        }
+    }
 `;
 
 Header.content = styled.div`
@@ -18,6 +34,7 @@ Header.content = styled.div`
     align-items: center;
 
     padding: 0px 4% 0px 4%;
+
 `;
 
 

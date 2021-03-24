@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Div } from '../../Components/Hamburguer';
 import { BiPlus } from 'react-icons/bi';
 import { falseApi } from '../../../pages/api/hello';
-import axios from 'axios';
 
 export const Hamburguer = ({ 
     scroll,
