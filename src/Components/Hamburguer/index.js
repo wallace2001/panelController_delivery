@@ -96,7 +96,7 @@ Div.Product = styled.div`
         height: 129px;
 
         border-radius: 10px;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     h2{
