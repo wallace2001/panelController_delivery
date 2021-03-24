@@ -33,7 +33,7 @@ export const Promo = ({
 
             setIdProduct(promo[id]);
             setDeleteProduct(promo[id]._id);
-            setRoute(`promo/promodelete/`);
+            setRoute(`/promo/promodelete/`);
         }
 
         const handleEdit = (e) =>{
@@ -41,7 +41,7 @@ export const Promo = ({
             const id = e.target.id;
             setIdProduct(promo[id]);
             setDeleteProduct(promo[id]._id);
-            setRoute(`promo/promopatch/`);
+            setRoute(`/promo/promopatch/`);
         }
     
 

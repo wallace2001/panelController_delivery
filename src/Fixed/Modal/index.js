@@ -25,10 +25,6 @@ export const Modals = ({ modal, handleSend, route, setModal, deleteProduct, edit
             setEdit(false);
         }
     }
-    
-    console.log(deleteProduct);
-    console.log(idProduct);
-    console.log(route+deleteProduct);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -45,13 +41,8 @@ export const Modals = ({ modal, handleSend, route, setModal, deleteProduct, edit
             }
         
         api.post(route,params, config).then(res => {
-            console.log(res);
             res.data.error ? setError(true) : setError(false);
             res.data.error ? alert('Erro ao Criar Produto!') : alert('Produto criado com sucesso!');
-            console.log(image);
-            console.log(name);
-            console.log(description);
-            console.log(price);
             handleSend();
 
             // !res.data.error ? setImage() : '';
@@ -71,20 +62,10 @@ export const Modals = ({ modal, handleSend, route, setModal, deleteProduct, edit
                 'Content-Type' : 'multipart/form-data'
             }
             api.patch(`${route}${deleteProduct}`,params, config).then(res => {
-                console.log(res);
                 res.data.error ? setError(true) : setError(false);
                 res.data.error ? alert('Erro ao Criar Produto!') : alert('Produto criado com sucesso!');
-                console.log(image);
-                console.log(name);
-                console.log(description);
-                console.log(price);
                 handleSend();
                 setEdit(false);
-    
-                // !res.data.error ? setImage() : '';
-                // !res.data.error ? setName() : '';
-                // !res.data.error ? setDescription() : '';
-                // !res.data.error ? setPrice() : '';
             });
         } 
 

@@ -48,7 +48,6 @@ export default MyApp;
 
 export const getServerSideProps = async(ctx) => {
   const { email, password, name } = ctx.req.cookies;
-  console.log(ctx.req.cookies);
 
   return {
       props:{

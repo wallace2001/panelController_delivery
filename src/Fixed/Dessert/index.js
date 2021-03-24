@@ -28,7 +28,7 @@ export const Dessert = ({
 
     const showModal = () => {
         setModal(!modal);
-        setRoute('dessert/dessertpost');
+        setRoute('/dessert/dessertpost');
     };
 
     const handleEdit = (e) =>{
@@ -37,7 +37,7 @@ export const Dessert = ({
 
         setIdProduct(dessert[id]);
         setDeleteProduct(dessert[id]._id);
-        setRoute('dessert/dessertpatch/');
+        setRoute('/dessert/dessertpatch/');
     }
 
     const handleClick = (e) => {
@@ -51,7 +51,7 @@ export const Dessert = ({
 
         setIdProduct(dessert[id]);
         setDeleteProduct(dessert[id]._id);
-        setRoute('dessert/dessertdelete/');
+        setRoute('/dessert/dessertdelete/');
     }
     return (
         <Div col={modal} id={scroll[0].path}>

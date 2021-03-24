@@ -22,7 +22,6 @@ export const LoginProvider = ({ children, ...rest }) => {
         .then(res => {
             setMe(res);
             res.data.ok ? setName(res.data.user) :  '';
-            console.log(rest);
         });
     }
     // router.push(`/panel/`)

@@ -143,9 +143,6 @@ export const PanelConfig = ({ navbar, setNavbar, tamEval, about, tel, ifood, wha
     }, []);
     const img = db.bgMenu;
 
-    console.log(evaluation);
-
-
     return (
         <Panel onClick={() => setNavbar(false)}>
         <Panel.Bg backgroundImg={img}>

@@ -36,7 +36,7 @@ export const Hamburguer = ({
 
         setIdProduct(hamburguer[id]);
         setDeleteProduct(hamburguer[id]._id);
-        setRoute(`description/descriptiondelete/`);
+        setRoute(`/description/descriptiondelete/`);
     }
 
     const handleEdit = (e) =>{
@@ -44,7 +44,7 @@ export const Hamburguer = ({
         const id = e.target.id;
         setIdProduct(hamburguer[id]);
         setDeleteProduct(hamburguer[id]._id);
-        setRoute(`description/descriptionpatch/`);
+        setRoute(`/description/descriptionpatch/`);
     }
 
 

@@ -19,7 +19,6 @@ export default function Panel(){
     const [navbar, setNavbar] = useState(false);
 
         const handleSend = () => {
-            console.log('tste');
         }
 
         useEffect(() => {
@@ -65,9 +64,6 @@ export default function Panel(){
             api.get('about/getabout')
             .then(res => setAbout(res.data));
         }, [about]);
-
-        console.log(promo);
-        console.log(dessert);
 
     return (
         <>

@@ -26,8 +26,7 @@ export const About = ({
 
             setIdProduct(about[id]);
             setDeleteProduct(about[id]._id);
-            setRoute('about/sendupdate/');
-            console.log(about[id]._id);
+            setRoute('/about/sendupdate/');
         }
 
     return (

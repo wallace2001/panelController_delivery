@@ -46,12 +46,7 @@ export const Navbar = ({ color, setNavbar, navbar }) => {
         localStorage.setItem('logado', false);
         router.push('/');
     }
-
-    const handleClick = () => {
-        console.log('To');
-    }
-
-console.log(navbar);
+    
     return (
         <Header color={color} scrollNav={scrollNav}>
             <Header.content >

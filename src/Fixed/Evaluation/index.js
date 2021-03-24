@@ -31,7 +31,6 @@ export const Evaluation = ({ scroll, evaluation }) => {
     const handleDelete = (e) => {
         const id = e.target.id;
         const delet = evaluation[id]._id;
-        console.log(evaluation[id]);
         api.delete(`evaluation/deleteevaluation/${delet}`)
         .then(res => {
             setErr(res.data);

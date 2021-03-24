@@ -40,10 +40,6 @@ export const ModalsEditAndDelete = ({
         const [errAbout, setErrAbout] = useState();
         const [title, setTitle] = useState();
         const [description, setDescription] = useState();
-        // const [info, setInfo] = useState();
-
-        console.log(route);
-        console.log(infoContact);
 
         const CloseModal = (e) => {
             if(modalRef.current === e.target){
@@ -71,7 +67,6 @@ export const ModalsEditAndDelete = ({
         const handleDelete = () => {
             api.delete(`${route+deleteProduct}`)
             .then(res => {
-                console.log(res);
                 setError(res.data);
                 handleSend();
             });
@@ -83,7 +78,6 @@ export const ModalsEditAndDelete = ({
             api.post(`${route}`,{
                 info: info,
             }).then(res => {
-                console.log(res.data);
                 setSuccess(res.data ? 1 : 0);
                 handleSend();
             });
@@ -110,10 +104,7 @@ export const ModalsEditAndDelete = ({
                 setErrAbout(res.data ? 1 : 0);
                 handleSend();
             })
-        }
-
-        console.log(route);
-        console.log(deleteProduct);
+        };
 
 
     return (

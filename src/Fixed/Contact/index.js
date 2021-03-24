@@ -43,7 +43,7 @@ export const Contact = ({
 
             setIdProduct(value === 'telefone' ? tel[id] : value === 'whatsapp' ? whats[id] : value === 'ifood' ? ifood[id] : '');
             setDeleteProduct(value === 'telefone' ? tel[id]._id : value === 'whatsapp' ? whats[id]._id : value === 'ifood' ? ifood[id]._id : '');
-            setRoute(value === 'telefone' ? 'contact/contactdeletetel/' : value === 'whatsapp' ? 'contact/contactdeletewhats/' : value === 'ifood' ? 'contact/contactdeleteifood/' : '');
+            setRoute(value === 'telefone' ? '/contact/contactdeletetel/' : value === 'whatsapp' ? '/contact/contactdeletewhats/' : value === 'ifood' ? '/contact/contactdeleteifood/' : '');
         }
 
         const handleEdit = (e) => {
@@ -60,16 +60,15 @@ export const Contact = ({
 
             setIdProduct(value === 'telefone' ? tel[id] : value === 'whatsapp' ? whats[id] : value === 'ifood' ? ifood[id] : '');
             setDeleteProduct(value === 'telefone' ? tel[id]._id : value === 'whatsapp' ? whats[id]._id : value === 'ifood' ? ifood[id]._id : '');
-            setRoute(value === 'telefone' ? 'contact/contactpatchtel/' : value === 'whatsapp' ? 'contact/contactpatchwhats/' : value === 'ifood' ? 'contact/contactpatchifood/' : '');
+            setRoute(value === 'telefone' ? '/contact/contactpatchtel/' : value === 'whatsapp' ? '/contact/contactpatchwhats/' : value === 'ifood' ? '/contact/contactpatchifood/' : '');
 
         }
 
         const handleAdd = (e) => {
             const value = e.target.id;
-            console.log(value);
             setInfoContact(value);
             setAddContact(!addContact);
-            setRoute(value === 'telefone' ? 'contact/contactposttelfone' : value === 'whatsapp' ? 'contact/contactpostwhats' : value === 'ifood' ? "contact/contactpostifood" : '');
+            setRoute(value === 'telefone' ? '/contact/contactposttelfone' : value === 'whatsapp' ? '/contact/contactpostwhats' : value === 'ifood' ? "/contact/contactpostifood" : '');
         }
     return (
         <Contain id={scroll[4].path}>
@@ -78,7 +77,7 @@ export const Contact = ({
                 <h2>WhatsApp</h2>
                 <h2>Ifood</h2>
             </Contain.Fixed>
-            <Contain.Content onClick={(e) => console.log(e.target)}>
+            <Contain.Content>
                 <Contain.Wrap>
                     <h2>Telefone</h2>
                     {!tel ? '' : tel.map((item, index) => {
